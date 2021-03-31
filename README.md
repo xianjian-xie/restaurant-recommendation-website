@@ -37,6 +37,11 @@ Which (if any) progressive web app feature(s) does your app support?
 
 
 ![Home page](/MockUp/1._Main_Page_before_log_in.png?raw=true)
+![Home page](/MockUp/2._Profile_&_Weekly_Summary.png?raw=true)
+![Home page](/MockUp/3._Main_Page_after_log_in.png?raw=true)
+![Home page](/MockUp/4._Walk.png?raw=true)
+![Home page](/MockUp/5._Bike.png?raw=true)
+![Home page](/MockUp/6._Light_Rail_Bus.png?raw=true)
 
 
 ## Testing Notes
