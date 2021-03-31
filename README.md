@@ -52,7 +52,7 @@ This is the page if bike method is chosen. A map with Minneosta Ride Bike locati
 This is the page if metro method is chosen. The user can get time estimation of when light rail,bus would come to the nearest transit location (metro data already found). A notification would be sent to user if light rail/bus is close.
 ![Home page](/MockUp/6._Light_Rail_Bus.png?raw=true)
 
-This is the user homepage. Previous commute plans are listed and a breif summay would be provide. The user can also save his favourite plan.
+This is the user homepage. Previous commute plans are listed and a brief summay would be provide. The user can also save his favourite plan.
 ![Home page](/MockUp/2._Profile_&_Weekly_Summary.png?raw=true)
 
 Reponsive web would be developed and PWA features such as add to home screen would also be integrated in.
