@@ -40,26 +40,39 @@ Which (if any) progressive web app feature(s) does your app support?
 The first picture shows a log in page, users need to log in before using our app.
 ![Home page](/MockUp/p1.png?raw=true)
 
-This is the main page after log in. The user can create a commute plan from origin to destination by certain transport methods.
+This is the main page after log in. Users can see their unconfirmed trip information on the main page. The user can create a commute plan from origin to destination by certain transport methods.
 ![Home page](/MockUp/p2.png?raw=true)
 
-This is the page if walk method is chosen. A map would show. The user can monitor his/her location, steps and heart rate if app is on
+
+
+This is the trip plan page. The user can create a commute plan from origin to destination by certain transport methods.
 ![Home page](/MockUp/p3.png?raw=true)
 
-This is the page if bike method is chosen. A map with Minneosta Ride Bike location would shown (need to integrate with Nice Ride if possible)
+
+
+This is the page if walk method is chosen. A map would show. The user can monitor his/her location, steps and heart rate if app is on
 ![Home page](/MockUp/p4.png?raw=true)
 
-This is the page if metro method is chosen. The user can get time estimation of when light rail,bus would come to the nearest transit location (metro data already found). A notification would be sent to user if light rail/bus is close.
+
+
+This is the page if bike method is chosen. A map with Minneosta Ride Bike location would shown (need to integrate with Nice Ride if possible)
 ![Home page](/MockUp/p5.png?raw=true)
 
-This is the user homepage. Previous commute plans are listed and a brief summay would be provide. The user can also save his favourite plan.
+
+
+This is the page if metro method is chosen. The user can get time estimation of when light rail,bus would come to the nearest transit location (metro data already found). A notification would be sent to user if light rail/bus is close.
 ![Home page](/MockUp/p6.png?raw=true)
 
+
+This is the commutes summary homepage. Previous commute plans are listed and a brief summay would be provided. The user can also save his favourite plan.
 ![Home page](/MockUp/p7.png?raw=true)
 
 ![Home page](/MockUp/p8.png?raw=true)
 
+This is the general flow of these pages.
 ![Home page](/MockUp/flow.png?raw=true)
+
+For desktop experience, users can click "start my trip" button on "trip plan" page. Then this trip will be recorded. Users can confirm this trip manually on another computer after finishing this trip.
 
 Reponsive web would be developed and PWA features such as add to home screen would also be integrated in.
 
