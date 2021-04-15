@@ -55,6 +55,12 @@ This is the page if metro method is chosen. The user can get time estimation of 
 This is the user homepage. Previous commute plans are listed and a brief summay would be provide. The user can also save his favourite plan.
 ![Home page](/MockUp/p6.png?raw=true)
 
+![Home page](/MockUp/p7.png?raw=true)
+
+![Home page](/MockUp/p8.png?raw=true)
+
+![Home page](/MockUp/flow.png?raw=true)
+
 Reponsive web would be developed and PWA features such as add to home screen would also be integrated in.
 
 ## Testing Notes
