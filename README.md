@@ -72,7 +72,7 @@ This is the commutes summary homepage. Previous commute plans are listed and a b
 This is the general flow of these pages.
 ![Home page](/MockUp/flow.png?raw=true)
 
-For desktop experience, users can click "start my trip" button on "trip plan" page. Then this trip will be recorded. Users can confirm this trip manually on another computer after finishing this trip.
+For desktop experience, users can click "start my trip" button on "trip plan" page. Then this trip will be recorded. Users can confirm this pending trip manually either on "dashboard" page or "commute" page on another computer after finishing this trip.
 
 Reponsive web would be developed and PWA features such as add to home screen would also be integrated in.
 
