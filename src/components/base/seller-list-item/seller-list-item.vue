@@ -11,20 +11,20 @@
 
       <div class="mid clearfix">
         <star class="fl" :size="24" :score="data.wm_poi_score"></star>
-        <span class="count fl">月售{{ data.month_sale_num }}</span>
+        <!-- <span class="count fl">月售{{ data.month_sale_num }}</span> -->
         <span class="distance fr">{{ data.distance }}</span>
-        <span class="time fr">{{ data.avg_delivery_time }}分钟</span>
+        <span class="time fr">{{ data.avg_delivery_time }} minutes</span>
       </div>
 
-      <div class="fee">
+      <!-- <div class="fee">
         <span class="start">{{ data.min_price_tip }}</span>
         <span class="deliver">{{ data.shipping_fee_tip }}</span>
         <span class="average">{{ data.average_price_tip }}</span>
-      </div>
+      </div> -->
 
-      <div class="activity" v-for="sup in data.discounts2">
+      <!-- <div class="activity" v-for="sup in data.discounts2">
         <p><img :src="sup.icon_url">{{sup.info}}</p>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
