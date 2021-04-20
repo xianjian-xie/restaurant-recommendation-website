@@ -7,37 +7,37 @@
       <div class="overview">
         <div class="left">
           <h1 class="score">{{seller.score}}</h1>
-          <div class="title">综合评分</div>
-          <div class="rank">高于周边商家{{seller.rankRate}}%</div>
+          <div class="title">Overall Rating</div>
+          <!-- <div class="rank">高于周边商家{{seller.rankRate}}%</div> -->
         </div>
 
         <div class="right">
           <div class="service">
-            <span class="title">服务态度</span>
+            <span class="title">Service</span>
             <star :size="36" :score="seller.serviceScore"></star>
             <span class="score">{{seller.serviceScore}}</span>
           </div>
           <div class="goods">
-            <span class="title">商品评分</span>
+            <span class="title">Taste</span>
             <star :size="36" :score="seller.foodScore"></star>
             <span class="score">{{seller.foodScore}}</span>
           </div>
-          <div class="delivery">
+          <!-- <div class="delivery">
             <span class="title">送达时间</span>
             <span class="time">{{seller.deliveryTime}}分钟</span>
-          </div>
+          </div> -->
         </div>
       </div>
 
       <!-- 横线分隔条 -->
       <cross-line></cross-line>
 
-      <ratings-select :ratings="ratings"
+      <!-- <ratings-select :ratings="ratings"
                       :desc="desc"
                       :selectType="selectType"
                       :onlyContent="onlyContent"
                       @select="select"
-                      @switchContent="switchContent"></ratings-select>
+                      @switchContent="switchContent"></ratings-select> -->
 
       <div class="rating-wrapper">
         <ul>
@@ -58,7 +58,7 @@
 
               <div class="recommend" v-show="rating.recommend && rating.recommend.length">
                 <i class="icon-thumb_up"></i>
-                <span class="item" v-for="item in rating.recommend">{{item}}</span>
+                <!-- <span class="item" v-for="item in rating.recommend">{{item}}</span> -->
               </div>
 
               <div class="time">
@@ -69,7 +69,7 @@
         </ul>
 
         <!-- 无评价时的样式 -->
-        <div class="no-rating" v-show="!ratings || !ratings.length">暂无评价</div>
+        <div class="no-rating" v-show="!ratings || !ratings.length">No Comments</div>
       </div>
     </div>
   </div>

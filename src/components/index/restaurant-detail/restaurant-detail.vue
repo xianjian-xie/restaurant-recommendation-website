@@ -7,14 +7,14 @@
 
     <div class="tab">
       <div class="tab-item">
-        <router-link to="./goods">点菜</router-link>
+        <router-link to="./goods">Best Dishes</router-link>
       </div>
       <div class="tab-item">
-        <router-link to="./ratings">评价</router-link>
+        <router-link to="./ratings">Comments</router-link>
       </div>
-      <div class="tab-item">
+      <!-- <div class="tab-item">
         <router-link to="./seller">商家</router-link>
-      </div>
+      </div> -->
     </div>
 
     <keep-alive>

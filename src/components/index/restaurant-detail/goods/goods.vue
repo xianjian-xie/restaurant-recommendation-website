@@ -5,7 +5,7 @@
     <!-- 左右联动 -->
     <div class="goods">
       <!-- 左侧菜单 -->
-      <div class="menu-wrapper" ref="menuRef">
+      <!-- <div class="menu-wrapper" ref="menuRef">
         <ul>
           <li class="menu-item"
               v-for="(item, index) in goods"
@@ -17,13 +17,13 @@
             </span>
           </li>
         </ul>
-      </div>
+      </div> -->
 
       <!-- 右侧食物列表 -->
       <div class="foods-wrapper" ref="foodsRef">
         <ul>
           <li class="foods-list foods-list-hook" v-for="item in goods" ref="foodList">
-            <h1 class="title">{{ item.name }}</h1>
+            <!-- <h1 class="title">{{ item.name }}</h1> -->
 
             <ul>
               <li class="foods-item" v-for="food in item.foods" @click="toFoodDetail(food, $event)">
@@ -33,21 +33,21 @@
 
                 <div class="content">
                   <h2 class="name">{{ food.name }}</h2>
-                  <p class="desc">{{ food.description }}</p>
+                  <!-- <p class="desc">{{ food.description }}</p> -->
 
-                  <div class="extra">
+                  <!-- <div class="extra">
                     <span class="count">月售{{ food.sellCount }}份</span>
                     <span class="rating">好评率{{ food.rating }}%</span>
-                  </div>
+                  </div> -->
 
-                  <div class="price">
+                  <!-- <div class="price">
                     <span class="now">￥{{ food.price }}</span>
                     <span class="old" v-show="food.oldPrice">￥{{ food.oldPrice }}</span>
-                  </div>
+                  </div> -->
 
-                  <div class="control">
+                  <!-- <div class="control">
                     <cart-control :food="food" @drop="drop"></cart-control>
-                  </div>
+                  </div> -->
                 </div>
               </li>
             </ul>
@@ -56,14 +56,14 @@
       </div>
 
       <!-- 购物车 -->
-      <shopcart ref="shopcartRef"
+      <!-- <shopcart ref="shopcartRef"
                 :selectFoods="selectFoods"
                 :deliveryPrice="seller.deliveryPrice"
-                :minPrice="seller.minPrice"></shopcart>
+                :minPrice="seller.minPrice"></shopcart> -->
     </div>
 
     <!-- 商品详情页 -->
-    <goods-detail @drop="drop" :food="selectedFood" ref="goodsDetailRef"></goods-detail>
+    <!-- <goods-detail @drop="drop" :food="selectedFood" ref="goodsDetailRef"></goods-detail> -->
   </div>
 </template>
 

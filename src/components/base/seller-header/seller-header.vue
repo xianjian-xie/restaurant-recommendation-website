@@ -10,34 +10,34 @@
 
       <div class="content">
         <div class="title">
-          <span class="brand"></span>
+          <!-- <span class="brand"></span> -->
           <span class="name">{{ seller.name }}</span>
         </div>
 
-        <div class="description">
+        <!-- <div class="description">
           <span>{{ seller.description }} / {{ seller.deliveryTime }}</span>分钟送达
-        </div>
+        </div> -->
 
         <!-- 活动 -->
-        <div class="supports" v-if="seller.supports">
+        <!-- <div class="supports" v-if="seller.supports">
           <span class="icon" :class="classMap[seller.supports[0].type]"></span>
           <span class="text">{{ seller.supports[0].description }}</span>
-        </div>
+        </div> -->
       </div>
 
       <!-- 活动个数 -->
-      <div class="supports-count" v-if="seller.supports" @click="detailShow = true">
+      <!-- <div class="supports-count" v-if="seller.supports" @click="detailShow = true">
         <span>{{ seller.supports.length }}个活动</span>
         <i class="icon-keyboard_arrow_right"></i>
-      </div>
+      </div> -->
     </div>
 
     <!-- 公告 -->
-    <div class="bulletin-wrapper" @click="detailShow = true">
+    <!-- <div class="bulletin-wrapper" @click="detailShow = true">
       <span class="brand"></span>
       <span class="text">{{ seller.bulletin }}</span>
       <i class="icon-keyboard_arrow_right"></i>
-    </div>
+    </div> -->
 
     <!-- 背景 -->
     <div class="background">
