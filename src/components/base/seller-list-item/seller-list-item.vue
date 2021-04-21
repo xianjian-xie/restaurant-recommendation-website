@@ -25,6 +25,10 @@
       <!-- <div class="activity" v-for="sup in data.discounts2">
         <p><img :src="sup.icon_url">{{sup.info}}</p>
       </div> -->
+      <div class="bottom">
+        <span class="again">Favour</span>
+      </div>
+
     </div>
   </div>
 </template>
@@ -150,6 +154,26 @@ export default {
         vertical-align: top;
       }
     }
+      .bottom {
+    flex: 1;
+    @include onepx('top');
+    padding: 0 15px;
+    font-size: 14px;
+    height: 24px;
+    line-height: 24px;
+    .again {
+      float: right;
+      width: 76px;
+      height: 24px;
+      line-height: 24px;
+      border: 1px solid #ccc;
+      text-align: center;
+      font-size: 14px;
+      border-radius: 2px;
+      margin: 9px 0;
+    }
+  }
+
   }
 }
 </style>

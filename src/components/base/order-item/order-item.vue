@@ -5,18 +5,20 @@
     <div class="top">
       <img v-lazy="data.pic_url">
       <div class="name">{{data.name}}</div>
-      <div class="status">5 orders complete</div>
+      <!-- <div class="status">5 orders complete</div> -->
     </div>
 
-    <div class="mid">
+    <!-- <div class="mid">
       <div class="food">Average price: {{data.average_price_tip}}<span></span></div>
       <div class="food">Average deliverry time: {{data.avg_delivery_time}}<span></span></div>
       <div class="food">  </div>
       <div class="cost"><span></span></div>
-    </div>
+    </div> -->
 
     <div class="bottom">
-      <div class="again">Order again</div>
+      <span class="again">Pop</span>
+      <span class="again">Remove</span>
+      <span class="again">Comment</span>
     </div>
   </div>
 </template>
