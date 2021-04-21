@@ -5,16 +5,16 @@
     <div class="top">
       <img v-lazy="data.pic_url">
       <div class="name">{{data.name}}</div>
-      <div class="status">订单已完成</div>
+      <div class="status">5 orders complete</div>
     </div>
 
     <div class="mid">
-      <div class="food">香辣爆炒牛肚煲仔饭<span>x1</span></div>
-      <div class="cost">总计1个菜，实付<span>￥12.00</span></div>
+      <div class="food">My favourite dishes: <span></span></div>
+      <div class="cost"><span></span></div>
     </div>
 
     <div class="bottom">
-      <div class="again">再来一单</div>
+      <div class="again">Order again</div>
     </div>
   </div>
 </template>
