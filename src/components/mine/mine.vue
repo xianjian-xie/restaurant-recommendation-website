@@ -6,12 +6,12 @@
     <div class="top">
       <div class="info">
         <div class="avatar-wrapper">
-          <img src="../../assets/img/lazyload.jpeg">
+          <img src="../../assets/img/icon.jpg">
         </div>
 
         <div class="name-wrapper" @click="login">
-          <span class="name">登录</span>
-          <span class="desc">个人信息 <i class="iconfont icon-more"></i></span>
+          <span class="name">Login</span>
+          <span class="desc">Personal Information<i class="iconfont icon-more"></i></span>
         </div>
       </div>
 
@@ -27,19 +27,19 @@
 
     <!-- 重要的栏目 -->
     <div class="important">
-      <cross-item name="我的收藏">
+      <cross-item name="My Comments">
         <i class="iconfont icon-shoucang1"></i>
       </cross-item>
 
-      <cross-item name="我的足迹">
+      <cross-item name="Restaurant Have Gone">
         <i class="iconfont icon-zuji"></i>
       </cross-item>
 
-      <cross-item name="收货地址">
+      <cross-item name="Address">
         <i class="iconfont icon-dizhi"></i>
       </cross-item>
 
-      <cross-item name="余额">
+      <cross-item name="Balance">
         <i class="iconfont icon-money"></i>
       </cross-item>
     </div>
@@ -49,7 +49,7 @@
 
     <!-- 次要的栏目 -->
     <div class="minor">
-      <cross-item name="关于">
+      <cross-item name="About">
         <i class="iconfont icon-daohangguanyu"></i>
       </cross-item>
     </div>

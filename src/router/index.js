@@ -11,6 +11,7 @@ import Router from 'vue-router'
 // import Ratings from '@/components/index/restaurant-detail/ratings/ratings'
 // import Seller from '@/components/index/restaurant-detail/seller/seller'
 // import login from '@/components/login/login'
+// import {auth} from '../firebaseConfig.js'
 
 Vue.use(Router)
 

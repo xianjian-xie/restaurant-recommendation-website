@@ -3,8 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import { firestorePlugin } from 'vuefire' // Added to make vuefire work
+// import {auth} from './firebaseConfig.js' // for authentication
 
 Vue.config.productionTip = false
+Vue.use(firestorePlugin) // added to make vuefire work
 
 // vue-resource
 // 在服务器通讯方面，在升级到 vue 2.0 后，官方已经取消对 vue-resource 的更新而是转推 Axios
@@ -35,3 +38,13 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
+// let app // for authentication
+// auth.onAuthStateChanged(() => { // for authentication
+//   if (!app) { // for authentication
+//     app = new Vue({
+//       router,
+//       render: h => h(App)
+//     }).$mount('#app')
+//   }
+// })
