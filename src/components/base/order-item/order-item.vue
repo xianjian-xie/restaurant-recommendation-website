@@ -9,7 +9,8 @@
     </div>
 
     <div class="mid">
-      <div class="food">My favourite dishes: <span></span></div>
+      <div class="food">Average price: {{data.average_price_tip}}<span></span></div>
+      <div class="food">  </div>
       <div class="cost"><span></span></div>
     </div>
 

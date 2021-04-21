@@ -59,7 +59,7 @@
                 "ad_attr": "",
                 "shipping_fee_tip": "配送 ¥4",
                 "min_price_tip": "起送 ¥20",
-                "average_price_tip": "人均 ¥17",
+                "average_price_tip": " $17 per person",
                 "recommend_info": {
                     "icon": "",
                     "recommend_reason": ""
@@ -128,7 +128,7 @@
                 "ad_attr": "",
                 "shipping_fee_tip": "配送 ¥4",
                 "min_price_tip": "起送 ¥20",
-                "average_price_tip": "人均 ¥21",
+                "average_price_tip": "$21 per person",
                 "recommend_info": {
                     "icon": "",
                     "recommend_reason": ""
@@ -197,7 +197,7 @@
                 "ad_attr": "",
                 "shipping_fee_tip": "配送 ¥2.5",
                 "min_price_tip": "起送 ¥15",
-                "average_price_tip": "人均 ¥15",
+                "average_price_tip": "$15 per person",
                 "recommend_info": {
                     "icon": "",
                     "recommend_reason": ""
