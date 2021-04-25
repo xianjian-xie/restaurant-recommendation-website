@@ -18,7 +18,7 @@
       })
 
 注意： 
-1. 这个cors-anywhere.herokuapp.com需要每天获得1到2次temporary key （https://github.com/Rob--W/cors-anywhere/issues/301），这是人家自己搭建的
+1. 这个cors-anywhere.herokuapp.com需要每天获得1到2次temporary key （https://github.com/Rob--W/cors-anywhere/issues/301），这是人家自己搭建的， 我们可以直接用来请求
 2. 上面的&limit  &radius可以用我们自己的数据代替
 3. 请求回来的数据包括: （下列为list[0] object中包含的键值对）
 alias: "yh-beijing-san-francisco-7"
