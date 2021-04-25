@@ -22,7 +22,7 @@
 2. 上面的&limit  &radius可以用我们自己的数据代替
 3. 请求回来的数据包括: （下列为list[0] object中包含的键值对）
 alias: "yh-beijing-san-francisco-7"
-categories: [{…}]
+categories: [{…}]     （这个属性为list，每个list元素包含2个键值对）
 coordinates: {latitude: 37.77219859919826, longitude: -122.43062306195498}
 display_phone: "(415) 355-9125"
 distance: 205.89752350055602
