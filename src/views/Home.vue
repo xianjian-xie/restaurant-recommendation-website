@@ -41,7 +41,8 @@ import TabBar from '@/components/tab-bar/tab-bar'
 import CrossLine from '@/components/cross-line'
 import TitleBar from '@/components/title-bar'
 import RestaurantList from '@/components/restaurant-list'
-import axios from 'axios'
+// import axios from 'axios'
+import IndexList from '@/mock/index-list.json'
 
 export default {
   components: {
@@ -53,46 +54,7 @@ export default {
   },
   data () {
     return {
-    //   swipeData: [
-    //     {
-    //       pic: require('./img/swipe/bannertemp.e8a6fa63.jpg')
-    //     }
-    //   ],
-    //   types: [
-    //     {
-    //       ico: require('./img/types/types (7).png'),
-    //       txt: '美食'
-    //     },
-    //     {
-    //       ico: require('./img/types/types (0).png'),
-    //       txt: '美团超市'
-    //     },
-    //     {
-    //       ico: require('./img/types/types (1).png'),
-    //       txt: '生鲜果蔬'
-    //     },
-    //     {
-    //       ico: require('./img/types/types (5).png'),
-    //       txt: '甜点饮品'
-    //     },
-    //     {
-    //       ico: require('./img/types/types (4).png'),
-    //       txt: '正餐优选'
-    //     },
-    //     {
-    //       ico: require('./img/types/types (2).png'),
-    //       txt: '美团专送'
-    //     },
-    //     {
-    //       ico: require('./img/types/types (3).png'),
-    //       txt: '能量西餐'
-    //     },
-    //     {
-    //       ico: require('./img/types/types (6).png'),
-    //       txt: '精品小吃'
-    //     }
-    //   ],
-       indexList: []
+      indexList: IndexList.data.poilist
     }
   },
   props: {},
@@ -109,22 +71,22 @@ export default {
       })
      },
     // // 初始化列表数据
-    _initIndexListData () {
-      axios.get('/api/indexList').then(res => {
-        // console.log(res)
-        if (res.data.code === 0) {
-          this.indexList = res.data.data.data.poilist
-        }
-      }).catch(err => {
-        console.log(err)
-      })
-    }
+    // _initIndexListData () {
+    //   axios.get('/api/indexList').then(res => {
+    //     // console.log(res)
+    //     if (res.data.code === 0) {
+    //       this.indexList = res.data.data.data.poilist
+    //     }
+    //   }).catch(err => {
+    //     console.log(err)
+    //   })
+    // }
   },
   filters: {},
   computed: {},
   created () {
     // 初始化列表数据
-     this._initIndexListData()
+    //  this._initIndexListData()
   },
   mounted () {},
   destroyed () {}

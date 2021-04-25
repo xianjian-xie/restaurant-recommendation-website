@@ -9,6 +9,21 @@ const routes = [
     name: 'Home',
     component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue')
   },
+  {
+    path: '/restaurant',
+    redirect: '/restaurant/goods',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Restaurant.vue'),
+    children: [
+      {
+        path: 'goods',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Goods.vue')
+      },
+      {
+        path: 'ratings',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Ratings.vue')
+      }
+    ]
+  },
   // {
   //   path: '/about',
   //   name: 'About',

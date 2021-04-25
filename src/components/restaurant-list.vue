@@ -1,7 +1,8 @@
 <template>
   <div class="restaurant-list" @click="toRestaurant(data)">
     <div class="left">
-      <img v-lazy="data.pic_url">
+      <img :src="data.pic_url">
+      <!-- v-lazy -->
     </div>
 
     <div class="right">
