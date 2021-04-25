@@ -11,19 +11,34 @@ const routes = [
   },
   {
     path: '/restaurant',
+    name: 'Restaurant',
     redirect: '/restaurant/goods',
     component: () => import(/* webpackChunkName: "about" */ '../views/Restaurant.vue'),
     children: [
       {
         path: 'goods',
+        name: 'Goods',
         component: () => import(/* webpackChunkName: "about" */ '../views/Goods.vue')
       },
       {
         path: 'ratings',
+        name: 'Ratings',
         component: () => import(/* webpackChunkName: "about" */ '../views/Ratings.vue')
       }
     ]
   },
+  {
+    path: '/wishlist',
+    name: 'WishList',
+    component: () => import(/* webpackChunkName: "about" */ '../views/WishList.vue')
+  },
+  {
+    path: '/mine',
+    name: 'Mine',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Mine.vue')
+  }
+
+
   // {
   //   path: '/about',
   //   name: 'About',
