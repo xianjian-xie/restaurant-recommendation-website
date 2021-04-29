@@ -2,7 +2,7 @@
 
 <template>
   <div class="star" :class="starType">
-    <span class="star-item" v-for="item in itemClasses" :class="item"></span>
+    <span class="star-item" v-for="item in itemClasses" :key= "item.name" :class="item"></span>
   </div>
 </template>
 
