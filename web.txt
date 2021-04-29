@@ -1,0 +1,39 @@
+1. npm install axios --save
+
+2. import axios from 'axios'
+
+3. axios.get('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?'+
+      'term=restaurant'+
+      '&latitude=37.773972&longitude=-122.431297'+
+      '&radius=500'+
+      '&limit=40',{
+        headers:{
+          'Authorization': 'Bearer x2sEHlXYD2bWhWNBBL6jG8QstSmJNXpjZLVIAzyE6QhPpzKvFxZC7OKWy3b6iFLucFHjchzmJS6YjNEDGa6aXY5ORGdC5ngDHQvv16t719ENUcJ5Vd5CMq0boeiFYHYx',
+        }
+      }).then(res =>{
+        console.log(res)
+	if(res){
+		this.restaurantList = res.data.businesses (更新数据)
+	}
+      })
+
+注意： 
+1. 这个cors-anywhere.herokuapp.com需要每天获得1到2次temporary key （https://github.com/Rob--W/cors-anywhere/issues/301），这是人家自己搭建的， 我们可以直接用来请求
+2. 上面的&limit  &radius可以用我们自己的数据代替
+3. 请求回来的数据包括: （下列为list[0] object中包含的键值对）
+alias: "yh-beijing-san-francisco-7"
+categories: [{…}]     （这个属性为list，每个list元素包含2个键值对）
+coordinates: {latitude: 37.77219859919826, longitude: -122.43062306195498}
+display_phone: "(415) 355-9125"
+distance: 205.89752350055602
+id: "w6Rqt5gdNHl18wpxGuYnaQ"
+image_url: "https://s3-media1.fl.yelpcdn.com/bphoto/MFDDZFQqxiJjNyA4yw6GOQ/o.jpg"
+is_closed: false
+location: {address1: "500 Haight St", address2: "", address3: null, city: "San Francisco", zip_code: "94117", …}
+name: "YH-Beijing"
+phone: "+14153559125"
+price: "$$"
+rating: 4.5
+review_count: 125
+transactions: (2) ["delivery", "pickup"]
+url: "https://www.yelp.com/biz/yh-beijing-san-francisco-7?adjust_creative=Zf3X2utKfqqApX0HZb7r9g&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=Zf3X2utKfqqApX0HZb7r9g"
