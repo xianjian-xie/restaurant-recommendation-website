@@ -1,20 +1,20 @@
 <template>
-  <div class="restaurant-list" @click="toRestaurant(data)">
-    <div class="left">
+  <div class="restaurant-list" >
+    <div class="left" @click="toRestaurant(data)">
       <img :src="data.image_url">
       <!-- v-lazy -->
     </div>
 
     <div class="right">
-      <div class="name">{{ data.name }}</div>
+      <div class="name" @click="toRestaurant(data)">{{ data.name }}</div>
       
 
-      <div class="mid clearfix">
+      <div class="mid clearfix" @click="toRestaurant(data)">
         <star class="fl" :size="24" :score="data.rating"></star>
         
       </div>
 
-      <div class="fee">
+      <div class="fee" @click="toRestaurant(data)">
         <span v-for="category in data.categories" :key ="category.name" class="start"> {{ category.title }}</span>
         <!-- <span class="start">{{ data.min_price_tip }}</span>
         <span class="deliver">{{ data.shipping_fee_tip }}</span>
@@ -55,10 +55,15 @@ export default {
   },
   watch: {},
   methods: {
-    toRestaurant (data) {
-      // console.log(data)
-      this.$emit('toRestaurant', data)
-    },
+        toRestaurant () {
+      this.$router.push({
+        name: 'Restaurant', params:{data:this.data}
+      })
+     },
+    // toRestaurant (data) {
+    //   // console.log(data)
+    //   this.$emit('toRestaurant', data)
+    // },
 
   },
   filters: {},

@@ -25,10 +25,8 @@
     <!-- nearby restaurant -->
     <div class="nearby">
       <title-bar txt="nearby restaurants"></title-bar>
-      <restaurant-list v-for="item in indexList"
-                        :key="item.name"
-                        :data="item"
-                        @toRestaurant="toRestaurant()"></restaurant-list>
+      <restaurant-list v-for="item in indexList" :key="item.name" :data="item"></restaurant-list>
+                        <!-- @toRestaurant="toRestaurant()" -->
     </div>
 
     <tab-bar></tab-bar>
@@ -67,11 +65,7 @@ export default {
     //     path: '/restaurant_list'
     //   })
     // },
-    toRestaurant () {
-      this.$router.push({
-        path: '/restaurant'
-      })
-     },
+
     // // 初始化列表数据
     // _initIndexListData () {
     //   axios.get('/api/indexList').then(res => {
@@ -103,20 +97,6 @@ axios.get('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesse
 	}
       })
  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

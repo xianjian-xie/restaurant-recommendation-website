@@ -86,7 +86,6 @@ export default {
     return {
       // 商品数据
       goods: Seller.goods,
-      classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee'],
       // 右侧每一大项的高度区间
       // (10) [0, 1172, 1343, 1478, 1828, 2070, 2334, 2685, 3251, 4035]
       listHeight: [],
@@ -208,7 +207,7 @@ export default {
   },
   created () {
     // 初始化数据
-    this._initData()
+    // this._initData()
   },
   mounted () {},
   destroyed () {}
