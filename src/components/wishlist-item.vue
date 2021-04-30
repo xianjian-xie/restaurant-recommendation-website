@@ -1,9 +1,9 @@
 <template>
-  <div class="wishlist-item" @click="toRestaurant(data)">
-    <div class="top">
-      <img :src="data.pic_url">
+  <div class="wishlist-item" >
+    <div class="top" >
+      <img :src="data.pic_url" @click="toRestaurant(data)">
       <!-- v-lazy -->
-      <div class="name">{{data.name}}</div>
+      <div class="name" @click="toRestaurant(data)">{{data.name}}</div>
       <!-- <div class="status">5 orders complete</div> -->
     </div>
 
@@ -16,16 +16,22 @@
 
     <div class="bottom">
       <span class="again">Remove</span>
-      <span class="again">Comment</span>
+      <span class="again"><button @click="commentPage">comment</button></span>
+      
     </div>
   </div>
 </template>
 
 <script>
+import {db} from "../firebaseConfig.js"
+
+
 export default {
   components: {},
   data () {
-    return {}
+    return {
+      historylist:[],
+    }
   },
   props: {
     data: {
@@ -37,15 +43,41 @@ export default {
   },
   watch: {},
   methods: {
+
+    commentPage: function() {
+            this.$router.push({ name: 'Comment',
+            params: {
+              data:this.data,
+              id:this.data.id
+            }
+            })
+        },
+
+
        toRestaurant (data) {
       // console.log(data)
       this.$emit('toRestaurant', data)
+
+
+      
+
+      
     }
 
   },
   filters: {},
   computed: {},
   created () {},
+
+  firestore: {
+        // read a lot
+        historylist: db.collection("historylist"),
+
+    },
+
+
+
+
   mounted () {}
 }
 </script>
