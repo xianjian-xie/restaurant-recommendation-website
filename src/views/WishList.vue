@@ -3,7 +3,7 @@
     <!-- <div v-for="item in wishlistData" :key="item.name" >
       <wishlist-item :data="item"></wishlist-item>
     </div> -->
-
+    <top-bar></top-bar>
     <WishListItem v-for="item in wishlistData"
                     :key="item.name"
                     :data="item"
@@ -17,16 +17,21 @@
 import TabBar from '@/components/tab-bar/tab-bar'
 import WishListItem from '@/components/wishlist-item'
 import IndexList from '@/mock/index-list.json'
+// import TitleBar from '@/components/title-bar'
+import TopBar from '@/components/top-bar'
 // import axios from 'axios'
 
 export default {
   components: {
     TabBar,
-    WishListItem
+    // TitleBar,
+    WishListItem,
+    TopBar
   },
   data () {
     return {
-      wishlistData: IndexList.data.poilist
+      wishlistData: IndexList.data.poilist,
+      user: null
     }
   },
   props: {},
@@ -59,3 +64,15 @@ export default {
   destroyed () {}
 }
 </script>
+
+<style lang="scss" scoped>
+@import '~@/assets/scss/const.scss';
+@import '~@/assets/scss/mixin.scss';
+
+
+.topbar{
+  height: 70px;
+  background-color: rgb(219, 207, 38);
+}
+
+</style>

@@ -1,169 +1,249 @@
 <!-- 我的 -->
-
 <template>
   <div class="mine">
-    <div class="top">
-      <div class="info">
-        <div class="avatar-wrapper">
-          <img src="~@/assets/img/icon.jpg">
-        </div>
-
-        <div class="name-wrapper" @click="login">
-          <span class="name">Login</span>
-          <span class="desc">Personal Information<i class="iconfont icon-more"></i></span>
-        </div>
+    <!-- loading -->
+    
+    <top-bar></top-bar>
+    <div class="loading" v-if="isLoading">
+      <img :src="LoadingImg" />
+    </div>
+    <!-- history is empty -->
+    <template v-else-if="historyList.length == 0">
+      <div class="history-empty">
+        <img :src="EmptyImg" />
+        <div class="empty-text">Have gone restaurant is empty</div>
       </div>
-
-      <div class="operation">
-        <i class="iconfont icon-huanfu"></i>
-        <i class="iconfont icon-youjian"></i>
-        <i class="iconfont icon-shezhi"></i>
-      </div>
-    </div>
-
-    <cross-line></cross-line>
-
-    <div class="important">
-      <cross-item name="My Comments">
-        <i class="iconfont icon-shoucang1"></i>
-      </cross-item>
-
-      <cross-item name="Restaurant Have Gone">
-        <i class="iconfont icon-zuji"></i>
-      </cross-item>
-
-      <cross-item name="Address">
-        <i class="iconfont icon-dizhi"></i>
-      </cross-item>
-
-      <cross-item name="Balance">
-        <i class="iconfont icon-money"></i>
-      </cross-item>
-    </div>
-
-    <cross-line></cross-line>
-
-    <div class="minor">
-      <cross-item name="About">
-        <i class="iconfont icon-daohangguanyu"></i>
-      </cross-item>
-    </div>
-
+    </template>
+    <!-- history list -->
+    <template v-else>
+      <HistoryListItem
+        v-for="item in historyList"
+        :key="item.id"
+        :data="item"
+        @onAddRestaurantToWishlist="handleAddRestaurantToWishlist"></HistoryListItem>
+    </template>
     <tab-bar></tab-bar>
   </div>
 </template>
 
 <script>
 import TabBar from '@/components/tab-bar/tab-bar'
-import CrossLine from '@/components/cross-line'
-import CrossItem from '@/components/cross-item'
+import HistoryListItem from '@/components/historylist-item'
+import LoadingImg from '@/assets/img/loading-spinning-bubbles.svg'
+import EmptyImg from '@/assets/img/empty.svg'
+import TopBar from '@/components/top-bar'
+import { auth, db } from '@/firebaseConfig'
 
 export default {
   components: {
     TabBar,
-    CrossLine,
-    CrossItem
+    HistoryListItem,
+    // TitleBar,
+    TopBar
   },
   data () {
-    return {}
+    return {
+      user:null,
+      LoadingImg,
+      EmptyImg,
+      isLoading: true,
+      historyList: [],
+      mockData: [
+        {
+          id: '10000',
+          restaurantId: '10000',
+          restaurantName: 'restaurantName',
+          restaurantAvatar: 'http://p0.meituan.net/xianfu/2920fc37b810c63d12b1f6eb678e199015072.jpg',
+          personId: '123456',
+          personAvatar: '',
+          score: '0.6',
+          commentCount: 100,
+          comments: 'this is a comment! this is a comment! this is a comment! this is a comment! this is a comment!'
+        },
+        {
+          id: '10001',
+          restaurantId: '10000',
+          restaurantName: 'restaurantName',
+          restaurantAvatar: 'http://p1.meituan.net/xianfu/0567a050846552c293191f36434fa415240132.jpg',
+          personId: '123456',
+          personAvatar: '',
+          score: '1.8',
+          commentCount: 12,
+          comments: ''
+        },
+        {
+          id: '10002',
+          restaurantId: '10000',
+          restaurantName: 'restaurantName',
+          restaurantAvatar: 'http://p0.meituan.net/xianfu/e4437a3c18e48106b88a19ccb544cc1f35460.jpg',
+          personId: '123456',
+          personAvatar: '',
+          score: '2.4',
+          commentCount: 34,
+          comments: 'this is a comment! this is a comment! this is a comment! this is a comment! this is a comment!'
+        },
+        {
+          id: '10003',
+          restaurantId: '10000',
+          restaurantName: 'restaurantName',
+          restaurantAvatar: 'http://p0.meituan.net/xianfu/829ddf0c82683c1311c29444646818be46396.jpg',
+          personId: '123456',
+          personAvatar: '',
+          score: '3.6',
+          commentCount: 280,
+          comments: 'this is a comment! this is a comment! this is a comment! this is a comment! this is a comment!'
+        },
+        {
+          id: '10004',
+          restaurantId: '10000',
+          restaurantName: 'restaurantName',
+          restaurantAvatar: 'http://p1.meituan.net/xianfu/d3a267d8418c66850c3a7b8358aa8c408360.jpeg',
+          personId: '123456',
+          personAvatar: '',
+          score: '4.4',
+          commentCount: 376,
+          comments: ''
+        },
+        {
+          id: '10005',
+          restaurantId: '10000',
+          restaurantName: 'restaurantName',
+          restaurantAvatar: 'http://p1.meituan.net/xianfu/e5ab74eff5bb2393510805675a12a70410240.jpg',
+          personId: '123456',
+          personAvatar: '',
+          score: '5.0',
+          commentCount: 2509,
+          comments: 'this is a comment! this is a comment! this is a comment! this is a comment! this is a comment!'
+        }
+      ]
+    }
   },
   props: {},
   watch: {},
+  filters: {},
+  computed: {
+    currentUser () {
+      return auth.currentUser || {}
+    },
+    auth () {
+      return auth
+    },
+    uid () {
+      if (auth && auth.currentUser) {
+        return auth.currentUser.uid
+      }
+
+      return ''
+    }
+  },
+  created () {
+    this._getHistoryList(this.uid || '123')
+  },
+  mounted () {},
+  destroyed () {},
   methods: {
+    /**
+     * @description get history list
+     * @param uid - current user id
+     */
+    _getHistoryList (uid) {
+      const self = this
+      self.isLoading = true
+      var historyListRef = db.collection('historylist').where('person_id', '==', uid)
+
+      historyListRef.get().then((querySnapshot) => {
+        var historyList = []
+
+        querySnapshot.forEach((doc) => {
+            var data = doc.data()
+            data.id = doc.id
+
+            historyList.push(data)
+        })
+
+        // mock data
+        historyList.push(...self.mockData)
+        self.historyList = historyList
+      }).then(() => {
+        self.isLoading = false
+      }).catch((error) => {
+        console.error('get history list error: ', error)
+      })
+    },
+    /**
+     * @description add restaurant to wishlist
+     * @param currentUser - current user
+     * @param restaurantModel - restaurant info
+     */
+    _addWishlistBy (currentUser, restaurantModel) {
+      var restaurantIsExist = false
+      var wishlistRef = db.collection('wishlist')
+                          .where('person_id', '==', currentUser.uid || '')
+                          .where('restaurant_id', '==', restaurantModel.id || '')
+
+      wishlistRef.get().then((querySnapshot) => {
+        restaurantIsExist = querySnapshot.empty
+      }).then(() => {
+        if (restaurantIsExist) {
+          console.log('restaurant is exist in wishlist')
+        } else {
+          console.log('add restaurant to wishlist')
+        }
+      })
+    },
+    handleAddRestaurantToWishlist (params) {
+      const data = params.data || {}
+
+      this._addWishlistBy(this.currentUser, data)
+    },
     login () {
       this.$router.push({
         path: '/login'
       })
     }
-  },
-  filters: {},
-  computed: {},
-  created () {},
-  mounted () {},
-  destroyed () {}
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/const.scss';
-@import '~@/assets/scss/mixin.scss';
-
 .mine {
+  position: relative;
+  box-sizing: border-box;
   width: 100%;
-  height: 100%;
-  background-color: #ebebeb;
-  .top {
+  height: auto;
+  background: #ebebeb;
+  padding-bottom: 82px;
+  .loading {
+    width: 100vw;
+    height: 100vh;
     display: flex;
-    position: relative;
-    width: 100%;
-    height: 120px;
-    background-color: #06c1ae;
-    .info {
-      flex: 2;
-      display: flex;
-      flex-direction: row;
-      margin-top: 40px;
-      .avatar-wrapper {
-        width: 70px;
-        height: 70px;
-        margin-left: 20px;
-        img {
-          width: 70px;
-          height: 70px;
-          border-radius: 50%;
-        }
-      }
-      .name-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 55px;
-        margin-top: 10px;
-        margin-left: 20px;
-        .name {
-          font-size: 16px;
-          color: #fff;
-          font-weight: bold;
-        }
-        .desc {
-          font-size: 16px;
-          color: #fcfefe;
-          i {
-            font-size: 18px;
-          }
-        }
-      }
-    }
-    .operation {
-      flex: 1;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      i {
-        margin-top: 10px;
-        margin-right: 15px;
-        color: #fff;
-        font-size: 18px;
-        font-weight: 500;
-      }
+    // align-items: center;
+    justify-content: center;
+    img {
+      width: 48px;
+      height: 48px;
+      margin-top: 60px;
     }
   }
-  .important {
-    width: 100%;
-    background-color: #fff;
-    .cross-item {
-      &:last-child {
-        border-bottom: none;
-      }
-    }
+  .topbar{
+  height: 70px;
+  background-color: rgb(219, 207, 38);
   }
-  .minor {
-    width: 100%;
-    background-color: #fff;
-    .cross-item {
-      &:last-child {
-        border-bottom: none;
-      }
+  .history-empty {
+    width: 100vw;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 40%;
+      height: auto;
+    }
+    .empty-text {
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.85);
+      font-weight: 500;
     }
   }
 }

@@ -1,30 +1,32 @@
 <template>
-  <div class="restaurant-list" @click="toRestaurant(data)">
-    <div class="left">
-      <img :src="data.pic_url">
+  <div class="restaurant-list" >
+    <div class="left" @click="toRestaurant(data)">
+      <img :src="data.image_url">
       <!-- v-lazy -->
     </div>
 
     <div class="right">
-      <div class="name">{{ data.name }}</div>
+      <div class="name" @click="toRestaurant(data)">{{ data.name }}</div>
+      
 
-      <div class="mid clearfix">
-        <!-- <star class="fl" :size="24" :score="data.wm_poi_score"></star> -->
-        <!-- <span class="count fl">月售{{ data.month_sale_num }}</span> -->
-        <span class="distance fr">{{ data.distance }}</span>
-        <span class="time fr">{{ data.avg_delivery_time }} minutes</span>
+      <div class="mid clearfix" @click="toRestaurant(data)">
+        <star class="fl" :size="24" :score="data.rating"></star>
+        
       </div>
 
-      <!-- <div class="fee">
-        <span class="start">{{ data.min_price_tip }}</span>
+      <div class="fee" @click="toRestaurant(data)">
+        <span v-for="category in data.categories" :key ="category.name" class="start"> {{ category.title }}</span>
+        <!-- <span class="start">{{ data.min_price_tip }}</span>
         <span class="deliver">{{ data.shipping_fee_tip }}</span>
-        <span class="average">{{ data.average_price_tip }}</span>
-      </div> -->
+        <span class="average">{{ data.average_price_tip }}</span> -->
+      </div>
 
       <!-- <div class="activity" v-for="sup in data.discounts2">
         <p><img :src="sup.icon_url">{{sup.info}}</p>
       </div> -->
       <div class="bottom">
+        <div class="address">Address: {{ data.location.address1 }} , {{data.location.city}},{{data.location.state}},{{data.location.zip_code}}</div>
+        <span class="distance">Distance: {{ this.distance }} m </span>
         <span class="again">Favour</span>
       </div>
 
@@ -33,34 +35,43 @@
 </template>
 
 <script>
-// import Star from '@/components/star/star'
+import Star from '@/components/star/star'
 
 export default {
   components: {
-    // Star
+    Star
   },
   data () {
-    return {}
+    return {distance: null}
   },
   props: {
     data: {
       type: Object,
       default () {
-        return {}
+        return {
+        }
       }
     }
   },
   watch: {},
   methods: {
-    toRestaurant (data) {
-      // console.log(data)
-      this.$emit('toRestaurant', data)
-    }
+        toRestaurant () {
+      this.$router.push({
+        name: 'Restaurant', params:{data:this.data}
+      })
+     },
+    // toRestaurant (data) {
+    //   // console.log(data)
+    //   this.$emit('toRestaurant', data)
+    // },
+
   },
   filters: {},
   computed: {},
   created () {},
-  mounted () {},
+  mounted () {
+    this.distance = Math.round(parseFloat(this.data.distance))
+  },
   destroyed () {}
 }
 </script>
@@ -156,7 +167,9 @@ export default {
       .bottom {
     flex: 1;
     @include onepx('top');
-    padding: 0 15px;
+    padding-top: 5px;
+    padding-left: 0px;
+    padding-right: 15px;
     font-size: 14px;
     height: 24px;
     line-height: 24px;
@@ -169,7 +182,11 @@ export default {
       text-align: center;
       font-size: 14px;
       border-radius: 2px;
-      margin: 9px 0;
+      // margin: 9px 0;
+    }
+    .address{
+    }
+    .distance{
     }
   }
 

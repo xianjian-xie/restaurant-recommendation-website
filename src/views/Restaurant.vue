@@ -7,7 +7,7 @@
 
     <div class="tab">
       <div class="tab-item">
-        <router-link to="./goods">Best Dishes</router-link>
+        <router-link to="./goods">Best Dishess</router-link>
       </div>
       <div class="tab-item">
         <router-link to="./ratings">Comments</router-link>
@@ -27,7 +27,7 @@
 import RestaurantHeader from '@/components/restaurant-header'
 // import axios from 'axios'
 // import utils from '@/assets/js/utils.js'
-import Seller from '@/mock/seller.json'
+// import Seller from '@/mock/seller.json'
 
 export default {
   components: {
@@ -42,10 +42,10 @@ export default {
       //   // console.log(utils.http.urlParse())
       //   return utils.http.urlParse().id
       // }
-      restaurant: Seller.seller
+      restaurant: null
     }
   },
-  props: {},
+  props: ['data'],
   watch: {},
   methods: {
     // 初始化商家数据
@@ -76,7 +76,10 @@ export default {
     // 初始化商家数据
     // this._initData()
   },
-  mounted () {},
+  mounted () {
+    this.restaurant = this.$route.params.data;
+    console.log(this.restaurant)
+  },
   destroyed () {}
 }
 </script>
