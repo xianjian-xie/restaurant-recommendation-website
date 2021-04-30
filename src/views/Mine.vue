@@ -2,6 +2,8 @@
 <template>
   <div class="mine">
     <!-- loading -->
+    
+    <top-bar></top-bar>
     <div class="loading" v-if="isLoading">
       <img :src="LoadingImg" />
     </div>
@@ -29,15 +31,19 @@ import TabBar from '@/components/tab-bar/tab-bar'
 import HistoryListItem from '@/components/historylist-item'
 import LoadingImg from '@/assets/img/loading-spinning-bubbles.svg'
 import EmptyImg from '@/assets/img/empty.svg'
+import TopBar from '@/components/top-bar'
 import { auth, db } from '@/firebaseConfig'
 
 export default {
   components: {
     TabBar,
-    HistoryListItem
+    HistoryListItem,
+    // TitleBar,
+    TopBar
   },
   data () {
     return {
+      user:null,
       LoadingImg,
       EmptyImg,
       isLoading: true,
@@ -218,6 +224,10 @@ export default {
       height: 48px;
       margin-top: 60px;
     }
+  }
+  .topbar{
+  height: 70px;
+  background-color: rgb(219, 207, 38);
   }
   .history-empty {
     width: 100vw;
