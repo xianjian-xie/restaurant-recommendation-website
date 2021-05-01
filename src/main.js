@@ -4,6 +4,11 @@ import router from './router'
 import { firestorePlugin } from 'vuefire' // Added to make vuefire work
 import {auth} from './firebaseConfig.js' // for authentication
 
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+Vue.use(BootstrapVue)
+
 Vue.config.productionTip = false
 Vue.use(firestorePlugin); // added to make vuefire work
 

@@ -8,7 +8,7 @@
         <span v-if="!editable" @click="edit"><button>click to edit</button></span>
         <div v-else>
             <vue-editor v-model="content"></vue-editor>
-            <div v-html="content"></div>
+            <!--<div v-html="content"></div>-->
             <button @click="addRestaurant">submit</button>
         </div>
     </div>
@@ -19,27 +19,27 @@
     </div>
   
     <br />
-    <div class="camera">
-        <div class="c-left">
-            <PhotoCapture v-model="imageBase64" />
-        </div>
-        <div class="c-right">
-            <img :src=imageBase64 />
-            <br />
-            <button @click="uploadSnapshot">upload</button>
-        </div>
+    <b-container >
         
 
+
+
+
+        <b-row>
+            <b-col sm="12" md="6"  >
+                <PhotoCapture v-model="imageBase64" id="cam" />
+            </b-col>
+            <b-col sm="12" md="6" >
+                <img :src=imageBase64 />
+                <br />
+                <button @click="uploadSnapshot">upload</button>
+            </b-col>
+        </b-row>
         
         <br />
         
 
-    </div>
-
-    
-
-    
-    
+    </b-container>
 
     
     
@@ -142,13 +142,14 @@ export default {
 .review{
     color:black;
     border-style: solid;
-    border-color: #92a8d1;
+    border-color: #cecece;
     margin-left:10%;
     margin-right:10%;
     margin-top:2%;
     margin-bottom:2%;
     padding-top:2%;
     padding-bottom:2%;
+    background-color:white;
 }
 .title{
     font-weight: bold;
@@ -157,7 +158,7 @@ export default {
 .snapshot{
     color:black;
     border-style: solid;
-    border-color: #92a8d1;
+    border-color: #cecece;
     margin-left:10%;
     margin-right:10%;
     margin-top:2%;
@@ -175,7 +176,7 @@ export default {
 .camera{
     color:black;
     border-style: solid;
-    border-color: #92a8d1;
+    border-color: white;
     margin-left:10%;
     margin-right:10%;
     margin-top:2%;
@@ -183,24 +184,38 @@ export default {
     padding-top:2%;
     padding-bottom:2%;
     display:flex;
+    
 }
 .c-left{
     border-style: solid;
     border-color: #92a8d1;
     width:50%;
+    padding-left:auto;
     float:left;
+    
+    
+}
+#cam{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    text-align:center;
 }
 .c-right{
     border-style: solid;
     border-color: #92a8d1;
     width:50%;
     float:left;
+    
 }
 img{
         max-width: 100%;
         max-height: 100%;
         display: block; /* remove extra space below image */
     }
+
+ 
 
 </style>
 
