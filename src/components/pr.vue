@@ -1,34 +1,44 @@
 <template>
   <div>
 
-    <div>Your past review:</div>
-    <div v-html="restaurant.comments"></div>
+    <div class="review">
+        <div class="title">Your past review:</div>
+        <div v-html="restaurant.comments"></div>
 
-    <span v-if="!editable" @click="edit"><button>click to edit</button></span>
-    <div v-else>
-        <vue-editor v-model="content"></vue-editor>
-        <div v-html="content"></div>
-        <button @click="addRestaurant">submit</button>
+        <span v-if="!editable" @click="edit"><button>click to edit</button></span>
+        <div v-else>
+            <vue-editor v-model="content"></vue-editor>
+            <div v-html="content"></div>
+            <button @click="addRestaurant">submit</button>
+        </div>
+    </div>
+
+    <div class="snapshot">
+        <div class="title">Your snapshot:</div>
+        <img :src=restaurant.restaurant_snapshot width="40%" height="40%">
+    </div>
+  
+    <br />
+    <div class="camera">
+        <div class="c-left">
+            <PhotoCapture v-model="imageBase64" />
+        </div>
+        <div class="c-right">
+            <img :src=imageBase64 />
+            <br />
+            <button @click="uploadSnapshot">upload</button>
+        </div>
+        
+
+        
+        <br />
+        
+
     </div>
 
     
 
-    <div>Your snapshot:</div>
-    <img :src=restaurant.restaurant_snapshot width="200" height="200">
-
-
-  
-    <br />
-
     
-    
-    
-
-    <PhotoCapture v-model="imageBase64" />
-
-    <button @click="uploadSnapshot">upload</button>
-    <br />
-    <img :src=imageBase64 >
     
 
     
@@ -126,3 +136,71 @@ export default {
   
 }
 </script>
+
+<style>
+
+.review{
+    color:black;
+    border-style: solid;
+    border-color: #92a8d1;
+    margin-left:10%;
+    margin-right:10%;
+    margin-top:2%;
+    margin-bottom:2%;
+    padding-top:2%;
+    padding-bottom:2%;
+}
+.title{
+    font-weight: bold;
+    font-size: 35px;
+}
+.snapshot{
+    color:black;
+    border-style: solid;
+    border-color: #92a8d1;
+    margin-left:10%;
+    margin-right:10%;
+    margin-top:2%;
+    margin-bottom:2%;
+    padding-top:2%;
+    padding-bottom:2%;
+    text-allign:center;
+}
+.snapshot img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+.camera{
+    color:black;
+    border-style: solid;
+    border-color: #92a8d1;
+    margin-left:10%;
+    margin-right:10%;
+    margin-top:2%;
+    margin-bottom:2%;
+    padding-top:2%;
+    padding-bottom:2%;
+    display:flex;
+}
+.c-left{
+    border-style: solid;
+    border-color: #92a8d1;
+    width:50%;
+    float:left;
+}
+.c-right{
+    border-style: solid;
+    border-color: #92a8d1;
+    width:50%;
+    float:left;
+}
+img{
+        max-width: 100%;
+        max-height: 100%;
+        display: block; /* remove extra space below image */
+    }
+
+</style>
+

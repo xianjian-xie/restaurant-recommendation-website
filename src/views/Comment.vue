@@ -7,6 +7,8 @@
         
         <div v-for="r in restaurant" :key="r.index">{{r.id}}</div>-->
 
+        
+        <top-bar></top-bar>
         <div v-for="r in restaurant" :key="r.index"><pr :id="r.id"/></div>
 
         
@@ -18,10 +20,7 @@
 </template>
 
 <script>
-
-
-
-
+import TopBar from '@/components/top-bar'
 
 import {db} from "../firebaseConfig.js"
 
@@ -64,6 +63,7 @@ export default {
     
     components:{
         pr,
+        TopBar,
         
     },
 
