@@ -18,7 +18,7 @@
     </div> -->
 
     <div class="bottom">
-      <span class="again">Remove</span>
+      <span class="again" @click="remove">Remove</span>
       <span class="again" @click="commentPage">Comment</span>
       
       
@@ -62,6 +62,7 @@ export default {
         return {
             restaurant: db.collection("wishlist").doc(this.id),
             
+            
         }
   },
 
@@ -95,6 +96,26 @@ export default {
             }
             })
         },
+
+    remove: function(){
+        this.$firestoreRefs.restaurant.delete()
+
+        var jobskill_query = db.collection('historylist').where("restaurant_id", "==", this.restaurant.restaurant_id).where("person_id","==",auth.currentUser.uid);
+        jobskill_query.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+        doc.ref.delete();
+        });
+        });
+        
+        
+        
+        
+
+
+        
+    },
+
+    
 
     
 
