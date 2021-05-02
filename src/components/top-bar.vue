@@ -3,7 +3,7 @@
     <span>{{ txt }}</span>
   </div> -->
   <div class="topbar">
-        <title-bar txt="App Name"></title-bar>
+        <title-bar txt="Dr. Restaurant Seeker"></title-bar>
         <button @click="login">Login</button>
         <button @click="logout">Logout</button>
     </div>

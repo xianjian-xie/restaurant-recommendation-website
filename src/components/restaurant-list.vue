@@ -1,4 +1,5 @@
 <template>
+  <b-col sm="12" md="6"  >
   <div class="restaurant-list" >
     <div class="left" @click="toRestaurant(data)">
       <img :src="data.image_url">
@@ -27,11 +28,14 @@
       <div class="bottom">
         <div class="address">Address: {{ data.location.address1 }}, {{data.location.city}}, {{data.location.state}}, {{data.location.zip_code}}</div>
         <span class="distance">Distance: {{ this.distance }} m </span>
-        <span class="again" @click="addtoWishlist()">Favour</span>
+        <span v-if="Inwishlist" class="again" >Inwishlist</span>
+        <span v-else class="again" @click="addtoWishlist()">Favour</span>
       </div>
 
     </div>
   </div>
+      </b-col>
+
 </template>
 
 <script>
@@ -44,7 +48,11 @@ export default {
     Star
   },
   data () {
-    return {distance: null}
+    return {
+      Inwishlist: null,
+      distance: null,
+      returndata: null
+      }
   },
   props: {
     data: {
@@ -74,6 +82,7 @@ export default {
       restaurant_location:this.data.location, restaurant_rating:this.data.rating};
 
       db.collection("wishlist").add(newrestaurant);
+      // db.collection("tasks").where("owner", "==", auth.currentUser.uid),
     },
 
   },
@@ -82,6 +91,11 @@ export default {
   created () {},
   mounted () {
     this.distance = Math.round(parseFloat(this.data.distance))
+    // this.returndata = db.collection("wishlist").where("person_id", "==", auth.currentUser.uid).where("restaurant_id", "==", this.data.id),
+    // if ( !=null) {
+      // this.Inwishlist = true;
+    // console.log(this.returndata[0].id)
+    // }
   },
   destroyed () {}
 }

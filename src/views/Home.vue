@@ -7,7 +7,13 @@
     <!-- nearby restaurant -->
     <div class="nearby">
       <title-bar txt="nearby restaurants"></title-bar>
+      <b-container>
+      <b-row>
+ 
       <restaurant-list v-for="item in indexList" :key="item.name" :data="item"></restaurant-list>
+  
+      </b-row>
+      </b-container>
     </div>
 
     <tab-bar></tab-bar>

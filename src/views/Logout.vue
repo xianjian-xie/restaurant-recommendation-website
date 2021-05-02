@@ -36,6 +36,14 @@ export default {
       }
     });
   },
+beforeUpdate() {
+        if (!this.user) {
+            this.$router.push({ name: "Home" })
+            // you could, of course, also use the router to actually go to a 404 page if you wanted.
+        }
+    },
+
+
   methods: {
     // signInWithGoogle: function() {
     //   auth.signInWithRedirect(provider)
