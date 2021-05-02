@@ -25,7 +25,7 @@
         <p><img :src="sup.icon_url">{{sup.info}}</p>
       </div> -->
       <div class="bottom">
-        <div class="address">Address: {{ data.location.address1 }} , {{data.location.city}},{{data.location.state}},{{data.location.zip_code}}</div>
+        <div class="address">Address: {{ data.location.address1 }}, {{data.location.city}}, {{data.location.state}}, {{data.location.zip_code}}</div>
         <span class="distance">Distance: {{ this.distance }} m </span>
         <span class="again">Favour</span>
       </div>
@@ -57,7 +57,7 @@ export default {
   methods: {
         toRestaurant () {
       this.$router.push({
-        name: 'Restaurant', params:{data:this.data}
+        name: 'Goods', params:{data:this.data}
       })
      },
     // toRestaurant (data) {

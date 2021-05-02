@@ -7,14 +7,11 @@
 
     <div class="tab">
       <div class="tab-item">
-        <router-link to="./goods">Best Dishess</router-link>
+        <router-link to="./goods">Detailed Information</router-link>
       </div>
       <div class="tab-item">
-        <router-link to="./ratings">Comments</router-link>
+        <router-link :to="{name: 'Ratings',params:{data:this.restaurant}}">Comments</router-link>
       </div>
-      <!-- <div class="tab-item">
-        <router-link to="./seller">商家</router-link>
-      </div> -->
     </div>
 
     <keep-alive>
@@ -45,7 +42,7 @@ export default {
       restaurant: null
     }
   },
-  props: ['data'],
+  props: [],
   watch: {},
   methods: {
     // 初始化商家数据
@@ -101,6 +98,7 @@ export default {
       flex: 1;
       background-color: #fff;
       a {
+        text-decoration: none;
         display: block;
         font-size: 14px;
         color: rgb(77, 85, 93);
