@@ -1,5 +1,9 @@
 <template>
     <div id="comment">
+        <div>{{user.uid}}</div>
+
+        
+        
 
         <!--<div>{{data.name}}</div>
 
@@ -26,19 +30,13 @@ import {db} from "../firebaseConfig.js"
 
 import pr from "../components/pr.vue"
 
+import { auth, provider } from "@/firebaseConfig";
+
 export default {
 
     
 
-    props: {
-    data: {
-      type: Object,
-      default () {
-        return {}
-      }
-    },
-    
-  },
+    props: ["rid"], 
 
 
 
@@ -56,10 +54,22 @@ export default {
 
             cameraOpen: true,
 
-            restaurant:[]
+            restaurant:[],
+
+            user: [],
      
         }
     },
+
+    beforeCreate: function() {
+    auth.onAuthStateChanged(user => {
+      // console.log("user state:", user);
+      // uncomment above to check out which user properties are available.
+      if (user) {        
+        this.user = user;
+      }
+    });
+  },
     
     components:{
         pr,
@@ -69,10 +79,27 @@ export default {
 
     firestore: function() {
         return {
-            restaurant: db.collection("historylist").where("restaurant_id", "==", this.data.id)
+            restaurant: db.collection("historylist").where("restaurant_id", "==", this.rid)
 
         }
     },
+
+    methods: {
+    signInWithGoogle: function() {
+      auth.signInWithRedirect(provider)
+        .then(result => {
+          this.user = result.user;
+        })
+        .catch(err => console.log(err));
+    },
+    signOut: function() {
+      auth.signOut()
+        .then(() => {
+          this.user = null;
+        })
+        .catch(err => console.log(err));
+    }
+  }
 
 
      
