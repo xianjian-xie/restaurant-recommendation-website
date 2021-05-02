@@ -7,9 +7,9 @@
     <top-bar></top-bar>
     <b-container>
       <b-row>
-    <WishListItem v-for="item in wishlistData"
+    <WishListItem v-for="item in wishlist"
                     :key="item.name"
-                    :data="item"
+                    :id="item.id"
                     @toRestaurant="toRestaurant()"></WishListItem>
     </b-row>
       </b-container>
