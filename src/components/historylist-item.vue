@@ -74,7 +74,7 @@ export default {
     width: 100%;
     height: auto;
     padding: 12px;
-    margin-top: 12px;
+    // margin-top: 12px;
     background: #ffffff;
     border-radius: 6px;
     display: flex;

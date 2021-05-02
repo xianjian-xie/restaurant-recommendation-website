@@ -27,7 +27,7 @@
       <div class="bottom">
         <div class="address">Address: {{ data.location.address1 }}, {{data.location.city}}, {{data.location.state}}, {{data.location.zip_code}}</div>
         <span class="distance">Distance: {{ this.distance }} m </span>
-        <span class="again">Favour</span>
+        <span class="again" @click="addtoWishlist()">Favour</span>
       </div>
 
     </div>
@@ -36,6 +36,8 @@
 
 <script>
 import Star from '@/components/star/star'
+import {db} from "../firebaseConfig.js"
+import { auth } from "@/firebaseConfig";
 
 export default {
   components: {
@@ -64,6 +66,15 @@ export default {
     //   // console.log(data)
     //   this.$emit('toRestaurant', data)
     // },
+    addtoWishlist: function() {
+      console.log(auth.currentUser);
+      const newrestaurant = {person_id:auth.currentUser.uid, person_avatar:auth.currentUser.photoURL, 
+      restaurant_avatar:this.data.image_url, restaurant_id:this.data.id, restaurant_name:this.data.name, 
+      restaurant_latitude:this.data.coordinates.latitude,restaurant_longitude:this.data.coordinates.longitude, 
+      restaurant_location:this.data.location, restaurant_rating:this.data.rating};
+
+      db.collection("wishlist").add(newrestaurant);
+    },
 
   },
   filters: {},

@@ -19,8 +19,8 @@
 
       <!-- 右侧食物列表 -->
       <div class="foods-wrapper" ref="foodsRef">
-        <ul>
-          <li class="foods-list foods-list-hook">
+        <!-- <ul> -->
+          <!-- <li class="foods-list foods-list-hook"> -->
             <!-- <h1 class="title">{{ item.name }}</h1> -->
 
             <ul>
@@ -50,8 +50,8 @@
                 </div>
               </li>
             </ul>
-          </li>
-        </ul>
+          <!-- </li> -->
+        <!-- </ul> -->
       </div>
 
       <!-- 购物车 -->
@@ -169,7 +169,6 @@ export default {
   }
   .foods-wrapper {
     flex: 1;
-    .foods-list {
       .title {
         padding-left: 14px;
         height: 26px;
@@ -244,7 +243,6 @@ export default {
           }
         }
       }
-    }
   }
 }
 </style>

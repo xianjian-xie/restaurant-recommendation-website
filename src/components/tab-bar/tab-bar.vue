@@ -3,7 +3,7 @@
 <template>
   <ul class="tab-bar">
     <!-- ?_? 当设置 to="/" 时，首页ico总是高亮，搞不懂 ?_? -->
-    <router-link class="search" tag="li" to="/">
+    <router-link class="search" tag="li" to="/search">
       <i class="ico-search"></i>
       <span>Nearby Restaurants</span>
     </router-link>
@@ -51,6 +51,7 @@ export default {
   display: flex;
   flex-direction: row;
   background-color: #fcfcfc;
+  margin-bottom: 0px;
   li {
     flex: 1;
     color: #999;

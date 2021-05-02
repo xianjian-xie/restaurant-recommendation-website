@@ -54,7 +54,7 @@ export default {
   watch: {},
   methods: {
     back () {
-      this.$router.push({path: '/'})
+      this.$router.push({path: '/search'})
     }
   },
   filters: {},

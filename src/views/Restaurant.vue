@@ -22,9 +22,6 @@
 
 <script>
 import RestaurantHeader from '@/components/restaurant-header'
-// import axios from 'axios'
-// import utils from '@/assets/js/utils.js'
-// import Seller from '@/mock/seller.json'
 
 export default {
   components: {
@@ -32,40 +29,12 @@ export default {
   },
   data () {
     return {
-      // 商家数据
-      // 获取不同商家的 id
-      // getId () {
-      //   // http://localhost:8080/?id=001#/restaurant/seller
-      //   // console.log(utils.http.urlParse())
-      //   return utils.http.urlParse().id
-      // }
       restaurant: null
     }
   },
   props: [],
   watch: {},
   methods: {
-    // 初始化商家数据
-    // _initData () {
-    //   // vue-resource
-    //   // this.$http.get('/api/seller').then(res => {
-    //   //   console.log(res)
-    //   //   // this.someData = response.body;
-    //   // }, err => {
-    //   //   console.log(err)
-    //   // })
-
-    //   axios.get('/api/seller?id=' + this.seller.id).then(res => {
-    //     if (res.data.code === 0) {
-    //       // this.seller = res.data.data
-
-    //       // 添加 ID 属性
-    //       this.seller = Object.assign({}, this.seller, res.data.data)
-    //     }
-    //   }).catch(err => {
-    //     console.log(err)
-    //   })
-    // }
   },
   filters: {},
   computed: {},

@@ -8,10 +8,15 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    redirect: '/search',
+    // name: 'Home',
+    // component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue')
+  },
+  {
+    path: '/search',
     name: 'Home',
     component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue')
   },
-
   {
     path: '/comment/:id',
     name: 'Comment',
