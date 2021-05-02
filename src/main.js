@@ -7,6 +7,7 @@ import {auth} from './firebaseConfig.js' // for authentication
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import './registerServiceWorker'
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
