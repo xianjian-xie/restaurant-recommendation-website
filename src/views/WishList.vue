@@ -5,11 +5,14 @@
     </div> -->
     <div>{{user.uid}}</div>
     <top-bar></top-bar>
-    <WishListItem v-for="item in wishlist"
-                    :key="item.index"
-                    :id="item.id"
+    <b-container>
+      <b-row>
+    <WishListItem v-for="item in wishlistData"
+                    :key="item.name"
+                    :data="item"
                     @toRestaurant="toRestaurant()"></WishListItem>
-
+    </b-row>
+      </b-container>
     <tab-bar></tab-bar>
   </div>
 </template>

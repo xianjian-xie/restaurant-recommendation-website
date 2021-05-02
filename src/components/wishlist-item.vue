@@ -1,4 +1,5 @@
 <template>
+<b-col sm="12" md="6"  >
   <div class="wishlist-item" >
     <div class="top" >
       <div>{{restaurant.restaurant_id}}</div>
@@ -23,6 +24,7 @@
       
     </div>
   </div>
+  </b-col>
 </template>
 
 <script>

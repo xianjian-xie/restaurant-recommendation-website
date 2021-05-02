@@ -16,11 +16,15 @@
     </template>
     <!-- history list -->
     <template v-else>
+    <b-container>
+        <b-row>
       <HistoryListItem
         v-for="item in historyList"
         :key="item.id"
         :data="item"
         @onAddRestaurantToWishlist="handleAddRestaurantToWishlist"></HistoryListItem>
+        </b-row>
+      </b-container>
     </template>
     <tab-bar></tab-bar>
   </div>
