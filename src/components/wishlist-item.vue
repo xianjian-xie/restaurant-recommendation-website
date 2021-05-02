@@ -1,4 +1,5 @@
 <template>
+<b-col sm="12" md="6"  >
   <div class="wishlist-item" >
     <div class="top" >
       <img :src="data.pic_url" @click="toRestaurant(data)">
@@ -20,6 +21,7 @@
       
     </div>
   </div>
+  </b-col>
 </template>
 
 <script>

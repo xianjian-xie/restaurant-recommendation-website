@@ -4,11 +4,14 @@
       <wishlist-item :data="item"></wishlist-item>
     </div> -->
     <top-bar></top-bar>
+    <b-container>
+      <b-row>
     <WishListItem v-for="item in wishlistData"
                     :key="item.name"
                     :data="item"
                     @toRestaurant="toRestaurant()"></WishListItem>
-
+    </b-row>
+      </b-container>
     <tab-bar></tab-bar>
   </div>
 </template>

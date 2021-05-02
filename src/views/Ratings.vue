@@ -68,7 +68,7 @@ export default {
   },
   mounted () {
     console.log(this.$route.params.data)
-    axios.get('http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/'+this.$route.params.data.id+'/reviews',{
+    axios.get('https://boiling-waters-50053.herokuapp.com/https://api.yelp.com/v3/businesses/'+this.$route.params.data.id+'/reviews',{
         headers:{
           'Authorization': 'Bearer x2sEHlXYD2bWhWNBBL6jG8QstSmJNXpjZLVIAzyE6QhPpzKvFxZC7OKWy3b6iFLucFHjchzmJS6YjNEDGa6aXY5ORGdC5ngDHQvv16t719ENUcJ5Vd5CMq0boeiFYHYx',
         }
@@ -76,7 +76,7 @@ export default {
         console.log(res)
 	if(res){
 		this.ratings = res.data.reviews
-    console.log(this.ratings)
+    console.log(res.data.reviews)
     console.log(this.ratings[0].text)
 	}
       })
