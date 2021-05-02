@@ -9,10 +9,12 @@
 
         
         
-        <div v-for="r in restaurant" :key="r.index">{{r.id}}</div>-->
+        <div v-for="r in restaurant" :key="r.index" v-if="r.index==1">{{r.id}}</div>-->
 
         
         <top-bar></top-bar>
+
+        
         <div v-for="r in restaurant" :key="r.index"><pr :id="r.id"/></div>
 
         
@@ -79,7 +81,7 @@ export default {
 
     firestore: function() {
         return {
-            restaurant: db.collection("historylist").where("restaurant_id", "==", this.rid)
+            restaurant: db.collection("historylist").where("restaurant_id", "==", this.rid).where("person_id","==",auth.currentUser.uid)
 
         }
     },

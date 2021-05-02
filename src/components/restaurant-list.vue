@@ -82,6 +82,10 @@ export default {
       restaurant_location:this.data.location, restaurant_rating:this.data.rating};
 
       db.collection("wishlist").add(newrestaurant);
+
+      const newR = {comments:"", person_avatar:auth.currentUser.photoURL, person_id:auth.currentUser.uid, restaurant_avatar:this.data.image_url, restaurant_id:this.data.id, restaurant_name:this.data.name, restaurant_snapshot:""};
+      db.collection("historylist").add(newR)
+
       // db.collection("tasks").where("owner", "==", auth.currentUser.uid),
     },
 

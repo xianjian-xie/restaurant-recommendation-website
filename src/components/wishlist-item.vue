@@ -37,7 +37,8 @@ export default {
       wishlist:[],
       restaurant:[],
       user:[],
-      count: null,
+
+      
       
     }
   },
@@ -55,24 +56,36 @@ export default {
     });
   },
 
+  firestore: function() {
+        return {
+            restaurant: db.collection("wishlist").doc(this.id),
+            
+        }
+  },
+
   methods: {
 
     
+    
 
+    
+    
     commentPage: function() {
+      
+           
             
-            //var res
             //db.collection("historylist").where("restaurant_id","==",this.restaurant.restaurant_id).get().then((res) => console.log(res.size))
             //db.collection('historylist').get().then(snapshot => console.log(snapshot.size))
             //console.log(db.collection('historylist').get().then(snapshot => {return snapshot.size}))
-            //db.collection('historylist').get().then(snapshot => {
-            //  this.count=snapshot.size;
-            //  })
-            //console.log(this.count)
+            //db.collection('historylist').get().then(snapshot => console.log(snapshot.size))
+            //db.collection('historylist').get().then(snapshot => console.log(snapshot.size))
+            
+            
+            
             
             //if ( count==0){
-              const newRestaurant = {comments:"", person_avatar:this.user.photoURL, person_id:this.user.uid, restaurant_avatar:this.restaurant.restaurant_avatar, restaurant_id:this.restaurant.restaurant_id, restaurant_name:this.restaurant.restaurant_name, restaurant_snapshot:""};
-              db.collection("historylist").add(newRestaurant)
+            // const newRestaurant = {comments:"", person_avatar:this.user.photoURL, person_id:this.user.uid, restaurant_avatar:this.restaurant.restaurant_avatar, restaurant_id:this.restaurant.restaurant_id, restaurant_name:r.restaurant_name, restaurant_snapshot:""};
+            // db.collection("historylist").add(newRestaurant)
             //}
             this.$router.push({ name: 'Comment',
             params: {
@@ -115,12 +128,7 @@ export default {
   computed: {},
   created () {},
 
-  firestore: function() {
-        return {
-            restaurant: db.collection("wishlist").doc(this.id),
-            
-        }
-  },
+  
 
 
 
