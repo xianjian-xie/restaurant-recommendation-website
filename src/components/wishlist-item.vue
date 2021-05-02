@@ -20,6 +20,7 @@
       <span class="again">Remove</span>
       <span class="again" @click="commentPage">Comment</span>
       
+      
     </div>
   </div>
 </template>
@@ -36,7 +37,8 @@ export default {
       wishlist:[],
       restaurant:[],
       user:[],
-      res:[],
+      count: null,
+      
     }
   },
   props: ["id"],
@@ -55,11 +57,20 @@ export default {
 
   methods: {
 
+    
+
     commentPage: function() {
             
             //var res
             //db.collection("historylist").where("restaurant_id","==",this.restaurant.restaurant_id).get().then((res) => console.log(res.size))
-            //if ( res.size==0){
+            //db.collection('historylist').get().then(snapshot => console.log(snapshot.size))
+            //console.log(db.collection('historylist').get().then(snapshot => {return snapshot.size}))
+            //db.collection('historylist').get().then(snapshot => {
+            //  this.count=snapshot.size;
+            //  })
+            //console.log(this.count)
+            
+            //if ( count==0){
               const newRestaurant = {comments:"", person_avatar:this.user.photoURL, person_id:this.user.uid, restaurant_avatar:this.restaurant.restaurant_avatar, restaurant_id:this.restaurant.restaurant_id, restaurant_name:this.restaurant.restaurant_name, restaurant_snapshot:""};
               db.collection("historylist").add(newRestaurant)
             //}
@@ -69,6 +80,8 @@ export default {
             }
             })
         },
+
+    
 
 
     signInWithGoogle: function() {

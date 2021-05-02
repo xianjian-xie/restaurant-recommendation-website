@@ -45,7 +45,7 @@ export default {
 
   firestore: function() {
         return {
-            wishlist: db.collection("wishlist").where("person_id","==","zSwtXjOyhDajlaL7DJoFGYj72Fl1"),
+            wishlist: db.collection("wishlist").where("person_id","==",auth.currentUser.uid),
             
         }
   },
