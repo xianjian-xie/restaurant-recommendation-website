@@ -18,7 +18,7 @@
 
     <div class="bottom">
       <span class="again">Remove</span>
-      <span class="again"><button @click="commentPage">comment</button></span>
+      <span class="again" @click="commentPage">Comment</span>
       
     </div>
   </div>

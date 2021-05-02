@@ -1,9 +1,7 @@
-<!-- 商家模块 点菜页面 -->
-
 <template>
   <div>
     <!-- 左右联动 -->
-    <div class="goods">
+    <div class="goods" v-if="restaurant">
       <!-- 左侧菜单 -->
       <!-- <div class="menu-wrapper" ref="menuRef">
         <ul>
@@ -21,19 +19,19 @@
 
       <!-- 右侧食物列表 -->
       <div class="foods-wrapper" ref="foodsRef">
-        <ul>
-          <li class="foods-list foods-list-hook" v-for="item in goods" :key="item.name" ref="foodList">
+        <!-- <ul> -->
+          <!-- <li class="foods-list foods-list-hook"> -->
             <!-- <h1 class="title">{{ item.name }}</h1> -->
 
             <ul>
-              <li class="foods-item" v-for="food in item.foods" :key="food.name" @click="toFoodDetail(food, $event)">
+              <li class="foods-item" v-for="photo in restaurantDetail.photos" :key="photo.name">
                 <div class="icon">
-                  <img :src="food.icon">
+                  <img :src="photo">
                   <!-- v-lazy -->
                 </div>
 
                 <div class="content">
-                  <h2 class="name">{{ food.name }}</h2>
+                  <!-- <h2 class="name">{{ food.name }}</h2> -->
                   <!-- <p class="desc">{{ food.description }}</p> -->
 
                   <!-- <div class="extra">
@@ -52,8 +50,8 @@
                 </div>
               </li>
             </ul>
-          </li>
-        </ul>
+          <!-- </li> -->
+        <!-- </ul> -->
       </div>
 
       <!-- 购物车 -->
@@ -69,145 +67,39 @@
 </template>
 
 <script>
-// import Shopcart from '@/components/base/shopcart/shopcart'
-// import CartControl from '@/components/base/cart-control/cart-control'
-// import GoodsDetail from '@/components/index/restaurant-detail/goods-detail/goods-detail'
-// import BScroll from 'better-scroll'
-// import axios from 'axios'
-import Seller from '@/mock/seller.json'
+import axios from 'axios'
 
 export default {
   components: {
-    // Shopcart,
-    // CartControl,
-    // GoodsDetail
   },
   data () {
     return {
-      // 商品数据
-      goods: Seller.goods,
-      // 右侧每一大项的高度区间
-      // (10) [0, 1172, 1343, 1478, 1828, 2070, 2334, 2685, 3251, 4035]
-      listHeight: [],
-      // 计算当前滚动的 Y 值
-      scrollY: 0,
-      // 需要传入详情页的商品
-      selectedFood: {}
+      restaurant: null,
+      restaurantDetail: null
     }
   },
-  props: {
-    // 全部数据
-    // seller: {
-    //   type: Object
-    // }
-  },
+  props: {},
   watch: {},
-  methods: {
-    // 初始化数据
-    // _initData () {
-    //   axios.get('/api/goods').then(res => {
-    //     if (res.data.code === 0) {
-    //       this.goods = res.data.data
-    //     }
-
-    //     // DOM 渲染完成才能进行计算
-    //     setTimeout(() => {
-    //       // 初始化 BScroll
-    //       this._initScroll()
-    //       // 计算右侧每一大项的高度
-    //       this._calcHeight()
-    //     }, 20)
-    //   }).catch(err => {
-    //     console.log(err)
-    //   })
-    // },
-    // 初始化 BScroll
-    // _initScroll () {
-    //   this.menuScroll = new BScroll(this.$refs.menuRef, {
-    //     click: true
-    //   })
-    //   this.foodsScroll = new BScroll(this.$refs.foodsRef, {
-    //     click: true,
-    //     probeType: 3
-    //   })
-
-    //   this.foodsScroll.on('scroll', pos => {
-    //     this.scrollY = Math.abs(Math.floor(pos.y))
-    //     // console.log(this.scrollY)
-    //   })
-    // },
-    // 计算右侧每一大项的高度
-    _calcHeight () {
-      let foodList = this.$refs.foodsRef.getElementsByClassName('foods-list-hook')
-      let height = 0
-      this.listHeight.push(height)
-
-      for (let i = 0; i < foodList.length; i++) {
-        height += foodList[i].clientHeight
-        this.listHeight.push(height)
-      }
-      // (10) [0, 1172, 1343, 1478, 1828, 2070, 2334, 2685, 3251, 4035]
-      // console.log(this.listHeight)
-    },
-    // better-scroll 默认会阻止浏览器的原生 click 事件。
-    // 当设置为 true，better-scroll 会派发一个 click 事件
-    // 我们会给派发的 event 参数加一个私有属性 _constructed，值为 true
-    selectMenu (index, event) {
-      // 防止pc端触发两次点击
-      if (!event._constructed) {
-        return
-      }
-
-      let foodList = this.$refs.foodsRef.getElementsByClassName('foods-list-hook')
-      let el = foodList[index]
-      this.foodsScroll.scrollToElement(el, 100)
-    },
-    drop (target) {
-      // 性能优化，异步异步执行下落动画
-      this.$nextTick(() => {
-        this.$refs.shopcartRef.drop(target)
-      })
-    },
-    // 点击进入商品详情页
-    toFoodDetail (food, event) {
-      // 防止pc端触发两次点击
-      if (!event._constructed) {
-        return
-      }
-      this.selectedFood = food
-      this.$refs.goodsDetailRef.show()
-    }
-  },
+  methods: {},
   filters: {},
-  computed: {
-    currentIndex () {
-      for (let i = 0; i < this.listHeight.length; i++) {
-        let h1 = this.listHeight[i]
-        let h2 = this.listHeight[i + 1]
-
-        // 落到这个区间 或者 最后一个(无 h2)
-        if ((this.scrollY >= h1 && this.scrollY < h2) || !h2) {
-          return i
-        }
-      }
-      return 0
-    },
-    selectFoods () {
-      let select = []
-      // 之前一直错，可能是 this 指向问题，不用箭头函数
-      this.goods.forEach((good) => {
-        good.foods.forEach((food) => {
-          if (food.count) {
-            select.push(food)
-          }
-        })
-      })
-      return select
-    }
-  },
+  computed: {},
   created () {
-    // 初始化数据
-    // this._initData()
+    console.log(this.$route.params.data)
+    this.restaurant = this.$route.params.data
+
+    axios.get('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/'+this.restaurant.id,{
+        headers:{
+          'Authorization': 'Bearer x2sEHlXYD2bWhWNBBL6jG8QstSmJNXpjZLVIAzyE6QhPpzKvFxZC7OKWy3b6iFLucFHjchzmJS6YjNEDGa6aXY5ORGdC5ngDHQvv16t719ENUcJ5Vd5CMq0boeiFYHYx',
+        }
+      }).then(res =>{
+        console.log(res)
+	if(res){
+		this.restaurantDetail = res.data
+    console.log(this.restaurantDetail)
+	}
+      })
+
+
   },
   mounted () {},
   destroyed () {}
@@ -277,7 +169,6 @@ export default {
   }
   .foods-wrapper {
     flex: 1;
-    .foods-list {
       .title {
         padding-left: 14px;
         height: 26px;
@@ -352,7 +243,6 @@ export default {
           }
         }
       }
-    }
   }
 }
 </style>

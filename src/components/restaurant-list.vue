@@ -1,4 +1,5 @@
 <template>
+  <b-col sm="12" md="6"  >
   <div class="restaurant-list" >
     <div class="left" @click="toRestaurant(data)">
       <img :src="data.image_url">
@@ -25,24 +26,33 @@
         <p><img :src="sup.icon_url">{{sup.info}}</p>
       </div> -->
       <div class="bottom">
-        <div class="address">Address: {{ data.location.address1 }} , {{data.location.city}},{{data.location.state}},{{data.location.zip_code}}</div>
+        <div class="address">Address: {{ data.location.address1 }}, {{data.location.city}}, {{data.location.state}}, {{data.location.zip_code}}</div>
         <span class="distance">Distance: {{ this.distance }} m </span>
-        <span class="again">Favour</span>
+        <span v-if="Inwishlist" class="again" >Inwishlist</span>
+        <span v-else class="again" @click="addtoWishlist()">Favour</span>
       </div>
 
     </div>
   </div>
+      </b-col>
+
 </template>
 
 <script>
 import Star from '@/components/star/star'
+import {db} from "../firebaseConfig.js"
+import { auth } from "@/firebaseConfig";
 
 export default {
   components: {
     Star
   },
   data () {
-    return {distance: null}
+    return {
+      Inwishlist: null,
+      distance: null,
+      returndata: null
+      }
   },
   props: {
     data: {
@@ -57,13 +67,23 @@ export default {
   methods: {
         toRestaurant () {
       this.$router.push({
-        name: 'Restaurant', params:{data:this.data}
+        name: 'Goods', params:{data:this.data}
       })
      },
     // toRestaurant (data) {
     //   // console.log(data)
     //   this.$emit('toRestaurant', data)
     // },
+    addtoWishlist: function() {
+      console.log(auth.currentUser);
+      const newrestaurant = {person_id:auth.currentUser.uid, person_avatar:auth.currentUser.photoURL, 
+      restaurant_avatar:this.data.image_url, restaurant_id:this.data.id, restaurant_name:this.data.name, 
+      restaurant_latitude:this.data.coordinates.latitude,restaurant_longitude:this.data.coordinates.longitude, 
+      restaurant_location:this.data.location, restaurant_rating:this.data.rating};
+
+      db.collection("wishlist").add(newrestaurant);
+      // db.collection("tasks").where("owner", "==", auth.currentUser.uid),
+    },
 
   },
   filters: {},
@@ -71,6 +91,11 @@ export default {
   created () {},
   mounted () {
     this.distance = Math.round(parseFloat(this.data.distance))
+    // this.returndata = db.collection("wishlist").where("person_id", "==", auth.currentUser.uid).where("restaurant_id", "==", this.data.id),
+    // if ( !=null) {
+      // this.Inwishlist = true;
+    // console.log(this.returndata[0].id)
+    // }
   },
   destroyed () {}
 }

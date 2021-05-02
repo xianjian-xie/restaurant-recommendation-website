@@ -8,10 +8,15 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    redirect: '/search',
+    // name: 'Home',
+    // component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue')
+  },
+  {
+    path: '/search',
     name: 'Home',
     component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue')
   },
-
   {
     path: '/comment/:rid',
     name: 'Comment',
@@ -50,7 +55,7 @@ const routes = [
   {
     path: '/restaurant',
     name: 'Restaurant',
-    // redirect: '/restaurant/goods',
+    redirect: '/restaurant/goods',
     component: () => import(/* webpackChunkName: "about" */ '../views/Restaurant.vue'),
     children: [
       {
@@ -139,3 +144,5 @@ router.beforeEach((to, from, next) => {
     }
 })
 export default router
+
+
