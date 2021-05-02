@@ -1,12 +1,13 @@
 <template>
   <div class="wishlist">
-    <!-- <div v-for="item in wishlistData" :key="item.name" >
+    <!-- <div v-for="item in wishlist" :key="item.name" >
       <wishlist-item :data="item"></wishlist-item>
     </div> -->
+    <div>{{user.uid}}</div>
     <top-bar></top-bar>
-    <WishListItem v-for="item in wishlistData"
-                    :key="item.name"
-                    :data="item"
+    <WishListItem v-for="item in wishlist"
+                    :key="item.index"
+                    :id="item.id"
                     @toRestaurant="toRestaurant()"></WishListItem>
 
     <tab-bar></tab-bar>
@@ -21,6 +22,10 @@ import IndexList from '@/mock/index-list.json'
 import TopBar from '@/components/top-bar'
 // import axios from 'axios'
 
+import {db} from "../firebaseConfig.js"
+
+import { auth, provider } from "@/firebaseConfig";
+
 export default {
   components: {
     TabBar,
@@ -31,17 +36,54 @@ export default {
   data () {
     return {
       wishlistData: IndexList.data.poilist,
-      user: null
+      user: [],
+      wishlist: [],
     }
   },
   props: {},
   watch: {},
+
+  firestore: function() {
+        return {
+            wishlist: db.collection("wishlist").where("person_id","==","zSwtXjOyhDajlaL7DJoFGYj72Fl1"),
+            
+        }
+  },
+
+  beforeCreate: function() {
+    auth.onAuthStateChanged(user => {
+      // console.log("user state:", user);
+      // uncomment above to check out which user properties are available.
+      if (user) {        
+        this.user = user;
+      }
+    });
+  },
+
+
+
   methods: {
       toRestaurant () {
       this.$router.push({
         path: '/restaurant'
       })
      },
+
+     signInWithGoogle: function() {
+      auth.signInWithRedirect(provider)
+        .then(result => {
+          this.user = result.user;
+        })
+        .catch(err => console.log(err));
+    },
+    signOut: function() {
+      auth.signOut()
+        .then(() => {
+          this.user = null;
+        })
+        .catch(err => console.log(err));
+    }
+
     // 初始化列表数据
 //     _initIndexListData () {
 //       axios.get('/api/indexList').then(res => {

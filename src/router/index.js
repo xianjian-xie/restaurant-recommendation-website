@@ -13,10 +13,10 @@ const routes = [
   },
 
   {
-    path: '/comment/:id',
+    path: '/comment/:rid',
     name: 'Comment',
     component: () => import(/* webpackChunkName: "about" */ '../views/Comment.vue'),
-    props:  route => ({ id: route.params.id, data:route.params.data }),
+    props:  route => ({ rid: route.params.rid }),
   },
 
   
