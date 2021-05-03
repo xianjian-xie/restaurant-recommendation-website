@@ -30,11 +30,8 @@
 <script>
 import { auth, provider } from "@/firebaseConfig";
 import TopBar from '@/components/top-bar'
-<<<<<<< HEAD
 import TabBar from '@/components/tab-bar/tab-bar'
-=======
 import Img404 from '@/assets/img/404.svg'
->>>>>>> 11463251e1bba5b4404ebc694c0a501ca2e1d185
 
 export default {
     components: {
