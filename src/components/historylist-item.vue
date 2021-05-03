@@ -20,15 +20,9 @@
       <div class="comment-text" v-html="data.comments.trim()"></div>
     </div>
     <div class="actions">
-      <div
-        class="action-btn"
-        v-if="data.comments.trim().length"
-        @click="editComment"
-      >
-        Edit Comment
-      </div>
-      <button class="action-btn" v-else @click="addComment">Add Comment</button>
-      <button class="action-btn" @click="addToWishlist">Add to Wishlist</button>
+      <span class="again" v-if="data.comments.trim().length" @click="editComment">Edit Comment</span>
+      <span class="again" v-else @click="addComment">Add Comment</span>
+      <span class="again" @click="addToWishlist">Add to Wishlist</span>
     </div>
   </div>
    </b-col>
@@ -186,5 +180,17 @@ export default {
       margin: 12px 0 0 8px;
     }
   }
+
+      .again {
+      float: right;
+      width: 130px;
+      height: 24px;
+      line-height: 24px;
+      border: 1px solid #ccc;
+      text-align: center;
+      font-size: 14px;
+      border-radius: 2px;
+      margin: 9px 0;
+    }
 }
 </style>
