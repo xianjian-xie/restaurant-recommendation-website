@@ -99,11 +99,19 @@ export default {
         return {
             restaurant: db.collection("historylist").doc(this.id),
             //comments: db.collection("historylist").doc(this.id).get("comments")
+            //restaurant: db.collection("historylist").doc("this.id")
+              //              .onSnapshot((doc) => {
+                //            console.log("Current data: ", doc.data());
+                  //          })
 
         }
   },
 
   methods: {
+        
+
+
+
         addRestaurant: function() {
             if (this.restaurant==null){
                 const newRestaurant = {comments:this.content, person_avatar:"1", person_id:"1", restaurant_avatar:"", restaurant_id:this.restaurant.restaurant_id, restaurant_name:this.restaurant.restaurant_name, restaurant_snapshot:""};

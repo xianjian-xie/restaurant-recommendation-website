@@ -3,11 +3,10 @@
   <div class="wishlist-item">
     <div class="top" >
       
-      <img :src="restaurant.restaurant_avatar" >
-      <!-- @click="toRestaurant(data)" -->
+      <img :src="restaurant.restaurant_avatar">
       <!-- v-lazy -->
-      <div class="name" >{{restaurant.restaurant_name}}</div>
-      <!-- @click="toRestaurant(restaurant)" -->
+      <div class="name">{{restaurant.restaurant_name}}</div>
+      
       <!-- <div class="status">5 orders complete</div> -->
     </div>
 
@@ -67,13 +66,49 @@ export default {
   
 
   methods: {
-    commentPage: function() {
+
+    getNotifications() {
+                const self = this;
                 
+                this.restaurant = [];
+                db.collection("wishlist").doc(self.id).get()
+                    .then(function(snapshot){
+                        snapshot(function(doc){
+                            self.restaurant.push(doc.data());
+                        })
+                    })
+            },
+
+            //db.collection("cities").doc("SF")
+    //.onSnapshot((doc) => {
+     //   console.log("Current data: ", doc.data());
+    //});
+
+
+    
+    
+
+    
+    
+    commentPage(restaurant) {
+      
+           
+            
+            //db.collection("historylist").where("restaurant_id","==",this.restaurant.restaurant_id).get().then((res) => console.log(res.size))
+            //db.collection('historylist').get().then(snapshot => console.log(snapshot.size))
+            //console.log(db.collection('historylist').get().then(snapshot => {return snapshot.size}))
+            //db.collection('historylist').get().then(snapshot => console.log(snapshot.size))
+            //db.collection('historylist').get().then(snapshot => console.log(snapshot.size))
+            
+            
+            
+           
+            
             var restaurantIsExist = false;
             var wishlistRef = db
               .collection("historylist")
               .where("person_id", "==", auth.currentUser.uid || "")
-              .where("restaurant_id", "==", this.restaurant.restaurant_id || "");
+              .where("restaurant_id", "==", restaurant.restaurant_id || "");
 
             wishlistRef
               .get()
@@ -89,9 +124,9 @@ export default {
                 var addRestaurantData = {
                 person_id: auth.currentUser.uid,
                 person_avatar: auth.currentUser.photoURL,
-                restaurant_id: this.restaurant.restaurant_id,
-                restaurant_name: this.restaurant.restaurant_name,
-                restaurant_avatar: this.restaurant.restaurant_avatar,
+                restaurant_id: restaurant.restaurant_id,
+                restaurant_name: restaurant.restaurant_name,
+                restaurant_avatar: restaurant.restaurant_avatar,
                 comments:"",
                 restaurant_snapshot:"https://www.creativefabrica.com/wp-content/uploads/2019/02/Camera-icon-by-ahlangraphic-8-580x386.jpg",
                 };
@@ -117,8 +152,19 @@ export default {
         },
 
     remove: function(){
-        this.$firestoreRefs.restaurant.delete();
-        this.$router.push({ name: 'Fakered'})
+        //this.$firestoreRefs.restaurant.delete();
+        //this.getNotifications();
+        db.collection("wishlist").doc(this.id).delete().then(() => {
+    console.log("Document successfully deleted!");
+}).catch((error) => {
+    console.error("Error removing document: ", error);
+});
+db.collection("wishlist").doc(this.id)
+    .onSnapshot((doc) => {
+        console.log("Current data: ", doc.data());
+    });
+
+
     },
 
 

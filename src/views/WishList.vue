@@ -14,7 +14,9 @@
     </template>
     <b-container v-else>
       <b-row>
-    <WishListItem v-for="item in wishlist" :key="item.name" :id="item.id"></WishListItem>
+    <WishListItem v-for="item in wishlist"
+                    :key="item.name"
+                    :id="item.id"></WishListItem>
     </b-row>
       </b-container>
     <tab-bar></tab-bar>
@@ -57,6 +59,8 @@ export default {
         this.loading = false;
         return {
             wishlist: db.collection("wishlist").where("person_id","==",auth.currentUser.uid)
+            
+
         }
   },
 
