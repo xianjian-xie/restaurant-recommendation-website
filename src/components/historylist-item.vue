@@ -27,8 +27,8 @@
       >
         Edit Comment
       </div>
-      <div class="action-btn" v-else @click="addComment">Add Comment</div>
-      <div class="action-btn" @click="addToWishlist">Add to Wishlist</div>
+      <button class="action-btn" v-else @click="addComment">Add Comment</button>
+      <button class="action-btn" @click="addToWishlist">Add to Wishlist</button>
     </div>
   </div>
    </b-col>
@@ -168,19 +168,22 @@ export default {
     display: flex;
     justify-content: flex-end;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
+    // .action-btn {
+    //   margin: 12px 0 0 8px;
+    //   padding: 8px 16px;
+    //   border-radius: 6px;
+    //   background: rgb(253, 199, 88);
+    //   border: 1px solid rgb(253, 199, 88);
+    //   font-size: 13px;
+    //   color: rgba(0, 0, 0, 0.85);
+    //   cursor: pointer;
+    //   &:nth-last-of-type(1) {
+    //     background: transparent;
+    //     border: 1px solid rgba(0, 0, 0, 0.1);
+    //   }
+    // }
     .action-btn {
       margin: 12px 0 0 8px;
-      padding: 8px 16px;
-      border-radius: 6px;
-      background: rgb(253, 199, 88);
-      border: 1px solid rgb(253, 199, 88);
-      font-size: 13px;
-      color: rgba(0, 0, 0, 0.85);
-      cursor: pointer;
-      &:nth-last-of-type(1) {
-        background: transparent;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-      }
     }
   }
 }

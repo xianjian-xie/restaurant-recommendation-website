@@ -3,9 +3,16 @@
     <!-- <div v-for="item in wishlist" :key="item.name" >
       <wishlist-item :data="item"></wishlist-item>
     </div> -->
-    <div>{{user.uid}}</div>
+    
     <top-bar></top-bar>
-    <b-container>
+    <div class="loading" v-if="loading"></div>
+    <template v-else-if="wishlist.length == 0">
+      <div class="wishlist-empty">
+        <img :src="EmptyImg" />
+        <div class="empty-text">Wishlist is empty</div>
+      </div>
+    </template>
+    <b-container v-else>
       <b-row>
     <WishListItem v-for="item in wishlist" :key="item.name" :id="item.id"></WishListItem>
     </b-row>
@@ -21,6 +28,7 @@ import IndexList from '@/mock/index-list.json'
 // import TitleBar from '@/components/title-bar'
 import TopBar from '@/components/top-bar'
 // import axios from 'axios'
+import EmptyImg from "@/assets/img/empty.svg";
 
 import {db} from "../firebaseConfig.js"
 
@@ -35,6 +43,8 @@ export default {
   },
   data () {
     return {
+      EmptyImg,
+      loading: true,
       wishlistData: IndexList.data.poilist,
       user: [],
       wishlist: [],
@@ -44,9 +54,9 @@ export default {
   watch: {},
 
   firestore: function() {
+        this.loading = false;
         return {
-            wishlist: db.collection("wishlist").where("person_id","==",auth.currentUser.uid),
-            
+            wishlist: db.collection("wishlist").where("person_id","==",auth.currentUser.uid)
         }
   },
 
@@ -110,6 +120,23 @@ export default {
 .topbar{
   height: 70px;
   background-color: rgb(219, 207, 38);
+}
+.wishlist-empty {
+  width: 100vw;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 40%;
+    height: auto;
+  }
+  .empty-text {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+  }
 }
 
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div id="comment">
-        <div>{{user.uid}}</div>
+       
 
         
         
