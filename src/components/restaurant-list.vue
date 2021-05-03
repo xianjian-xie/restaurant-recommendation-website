@@ -26,7 +26,7 @@
         <p><img :src="sup.icon_url">{{sup.info}}</p>
       </div> -->
       <div class="bottom">
-        <div class="address">Address: {{ data.location.address1 }}, {{data.location.city}}, {{data.location.state}}, {{data.location.zip_code}}</div>
+        <!-- <div class="address">Address: {{ data.location.address1 }}, {{data.location.city}}, {{data.location.state}}, {{data.location.zip_code}}</div> -->
         <span class="distance">Distance: {{ this.distance }} m </span>
         <span v-if="Inwishlist" class="again" >Inwishlist</span>
         <span v-else class="again" @click="addtoWishlist()">Favour</span>
@@ -83,8 +83,8 @@ export default {
 
       db.collection("wishlist").add(newrestaurant);
 
-      const newR = {comments:"", person_avatar:auth.currentUser.photoURL, person_id:auth.currentUser.uid, restaurant_avatar:this.data.image_url, restaurant_id:this.data.id, restaurant_name:this.data.name, restaurant_snapshot:"https://www.creativefabrica.com/wp-content/uploads/2019/02/Camera-icon-by-ahlangraphic-8-580x386.jpg"};
-      db.collection("historylist").add(newR)
+      // const newR = {comments:"", person_avatar:auth.currentUser.photoURL, person_id:auth.currentUser.uid, restaurant_avatar:this.data.image_url, restaurant_id:this.data.id, restaurant_name:this.data.name, restaurant_snapshot:"https://www.creativefabrica.com/wp-content/uploads/2019/02/Camera-icon-by-ahlangraphic-8-580x386.jpg"};
+      // db.collection("historylist").add(newR)
 
       // db.collection("tasks").where("owner", "==", auth.currentUser.uid),
     },

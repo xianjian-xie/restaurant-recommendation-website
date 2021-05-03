@@ -63,6 +63,14 @@ const routes = [
     }
   },
   {
+    path: '/fakered',
+    name: 'Fakered',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Fakered.vue'),
+  },
+
+
+
+  {
     path: '/mine',
     name: 'Mine',
     component: () => import(/* webpackChunkName: "about" */ '../views/Mine.vue'),
@@ -90,7 +98,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
-  // const goto_nearby = to.matched.some(x => x.meta.goto_nearby)
+  const goto_nearby = to.matched.some(x => x.meta.goto_nearby)
   // const logout_to_nearby = to.matched.some(x => x.meta.logout_to_nearby)
   
   // const goto_signin = to.matched.some(x => x.meta.goto_signin)
@@ -112,12 +120,12 @@ router.beforeEach((to, from, next) => {
   //   next()
   // }
 
-  //   if (goto_nearby && auth.currentUser){
-  //     next('/')
-  //   }
-  //   else{
-  //     next()
-  //   }
+    if (goto_nearby && auth.currentUser){
+      next('/')
+    }
+    else{
+      next()
+    }
 
     if (requiresAuth && !auth.currentUser) {
       next('/404')

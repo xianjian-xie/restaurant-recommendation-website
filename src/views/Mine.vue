@@ -2,6 +2,8 @@
 <template>
   <div class="mine">
     <top-bar></top-bar>
+    <b-container>
+      <b-row>
     <!-- loading -->
     <div class="loading" v-if="isLoading">
       <img :src="LoadingImg" />
@@ -25,6 +27,8 @@
         @onAddRestaurantToWishlist="handleAddRestaurantToWishlist"
       ></HistoryListItem>
     </template>
+        </b-row>
+      </b-container>
     <tab-bar></tab-bar>
   </div>
 </template>

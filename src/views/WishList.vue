@@ -7,10 +7,7 @@
     <top-bar></top-bar>
     <b-container>
       <b-row>
-    <WishListItem v-for="item in wishlist"
-                    :key="item.name"
-                    :id="item.id"
-                    @toRestaurant="toRestaurant()"></WishListItem>
+    <WishListItem v-for="item in wishlist" :key="item.name" :id="item.id"></WishListItem>
     </b-row>
       </b-container>
     <tab-bar></tab-bar>
@@ -66,11 +63,6 @@ export default {
 
 
   methods: {
-      toRestaurant () {
-      this.$router.push({
-        path: '/restaurant'
-      })
-     },
 
      signInWithGoogle: function() {
       auth.signInWithRedirect(provider)

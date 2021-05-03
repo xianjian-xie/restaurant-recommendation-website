@@ -1,12 +1,13 @@
 <template>
-<b-col sm="12" md="6"  >
-  <div class="wishlist-item" >
+<b-col sm="12" md="6" >
+  <div class="wishlist-item">
     <div class="top" >
       <div>{{restaurant.restaurant_id}}</div>
-      <img :src="restaurant.restaurant_avatar" @click="toRestaurant(data)">
+      <img :src="restaurant.restaurant_avatar" >
+      <!-- @click="toRestaurant(restaurant)" -->
       <!-- v-lazy -->
-      <div class="name" @click="toRestaurant(data)">{{restaurant.restaurant_name}}</div>
-      
+      <div class="name" >{{restaurant.restaurant_name}}</div>
+      <!-- @click="toRestaurant(restaurant)" -->
       <!-- <div class="status">5 orders complete</div> -->
     </div>
 
@@ -38,9 +39,7 @@ export default {
     return {
       wishlist:[],
       restaurant:[],
-      user:[],
-
-      
+      user:[],  
       
     }
   },
@@ -59,20 +58,14 @@ export default {
   },
 
   firestore: function() {
+        console.log(this.id);
         return {
             restaurant: db.collection("wishlist").doc(this.id),
-            
             
         }
   },
 
   methods: {
-
-    
-    
-
-    
-    
     commentPage: function() {
       
            
@@ -98,26 +91,22 @@ export default {
         },
 
     remove: function(){
-        this.$firestoreRefs.restaurant.delete()
-
-        var jobskill_query = db.collection('historylist').where("restaurant_id", "==", this.restaurant.restaurant_id).where("person_id","==",auth.currentUser.uid);
-        jobskill_query.get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-        doc.ref.delete();
-        });
-        });
-        
-        
-        
-        
-
-
+        this.$firestoreRefs.restaurant.delete();
+        this.$router.push({ name: 'Fakered'})
+        // vm.$forceUpdate();
+        // return {
+        //     restaurant: db.collection("wishlist").doc(this.id),
+            
+            
+        // }
+        // var jobskill_query = db.collection('historylist').where("restaurant_id", "==", this.restaurant.restaurant_id).where("person_id","==",auth.currentUser.uid);
+        // jobskill_query.get().then(function(querySnapshot) {
+        // querySnapshot.forEach(function(doc) {
+        // doc.ref.delete();
+        // });
+        // });
         
     },
-
-    
-
-    
 
 
     signInWithGoogle: function() {
@@ -136,27 +125,16 @@ export default {
     },
 
 
-       toRestaurant (data) {
-      // console.log(data)
-      this.$emit('toRestaurant', data)
-
-
-      
-
-      
-    }
+    //    toRestaurant (data) {
+    //   // console.log(data)
+    //   this.$emit('toRestaurant', data)
+    
+    // }
 
   },
   filters: {},
   computed: {},
   created () {},
-
-  
-
-
-
-
-
   mounted () {}
 }
 </script>

@@ -17,15 +17,19 @@
     </template> -->
 
     <!-- <pre>{{ user }}</pre> -->
+    <tab-bar></tab-bar>
+
   </div>
 </template>
 
 <script>
 import { auth, provider } from "@/firebaseConfig";
 import TopBar from '@/components/top-bar'
+import TabBar from '@/components/tab-bar/tab-bar'
 
 export default {
     components: {
+      TabBar,
       TopBar,
     },
     name: "Auth",
