@@ -7,10 +7,10 @@
 
     <div class="tab">
       <div class="tab-item">
-        <router-link to="./goods">Detailed Information</router-link>
+        <router-link to="./goods">Pictures and Comments</router-link>
       </div>
       <div class="tab-item">
-        <router-link :to="{name: 'Ratings',params:{data:this.restaurant}}">Comments</router-link>
+        <router-link :to="{name: 'Ratings',params:{data:this.restaurant}}">Direction</router-link>
       </div>
     </div>
 

@@ -13,7 +13,7 @@
 
     <router-link class="mine" tag="li" to="/mine">
       <i class="ico-mine"></i>
-      <span>Personal Page</span>
+      <span>History</span>
     </router-link>
   </ul>
 </template>
