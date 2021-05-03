@@ -7,7 +7,13 @@
     <!-- nearby restaurant -->
     <div class="nearby">
       <title-bar txt="nearby restaurants"></title-bar>
+      <b-container>
+      <b-row>
+ 
       <restaurant-list v-for="item in indexList" :key="item.name" :data="item"></restaurant-list>
+  
+      </b-row>
+      </b-container>
     </div>
 
     <tab-bar></tab-bar>
@@ -71,7 +77,7 @@ export default {
  _initIndexListData () {
    console.log(this.location)
 
-axios.get('http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?'+
+axios.get(' https://boiling-waters-50053.herokuapp.com/https://api.yelp.com/v3/businesses/search?'+
       'term=restaurant'+ 
       '&latitude='+ this.location.coords.latitude + '&longitude=' + this.location.coords.longitude +
       '&radius=1500'+

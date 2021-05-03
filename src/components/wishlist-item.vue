@@ -1,9 +1,12 @@
 <template>
+<b-col sm="12" md="6"  >
   <div class="wishlist-item" >
     <div class="top" >
-      <img :src="data.pic_url" @click="toRestaurant(data)">
+      <div>{{restaurant.restaurant_id}}</div>
+      <img :src="restaurant.restaurant_avatar" @click="toRestaurant(data)">
       <!-- v-lazy -->
-      <div class="name" @click="toRestaurant(data)">{{data.name}}</div>
+      <div class="name" @click="toRestaurant(data)">{{restaurant.restaurant_name}}</div>
+      
       <!-- <div class="status">5 orders complete</div> -->
     </div>
 
@@ -15,43 +18,122 @@
     </div> -->
 
     <div class="bottom">
-      <span class="again">Remove</span>
-      <span class="again"><button @click="commentPage">comment</button></span>
+      <span class="again" @click="remove">Remove</span>
+      <span class="again" @click="commentPage">Comment</span>
+      
       
     </div>
   </div>
+  </b-col>
 </template>
 
 <script>
 import {db} from "../firebaseConfig.js"
 
+import { auth, provider } from "@/firebaseConfig";
 
 export default {
   components: {},
   data () {
     return {
-      historylist:[],
+      wishlist:[],
+      restaurant:[],
+      user:[],
+
+      
+      
     }
   },
-  props: {
-    data: {
-      type: Object,
-      default () {
-        return {}
-      }
-    }
-  },
+  props: ["id"],
+  
   watch: {},
+
+  beforeCreate: function() {
+    auth.onAuthStateChanged(user => {
+      // console.log("user state:", user);
+      // uncomment above to check out which user properties are available.
+      if (user) {        
+        this.user = user;
+      }
+    });
+  },
+
+  firestore: function() {
+        return {
+            restaurant: db.collection("wishlist").doc(this.id),
+            
+            
+        }
+  },
+
   methods: {
 
+    
+    
+
+    
+    
     commentPage: function() {
+      
+           
+            
+            //db.collection("historylist").where("restaurant_id","==",this.restaurant.restaurant_id).get().then((res) => console.log(res.size))
+            //db.collection('historylist').get().then(snapshot => console.log(snapshot.size))
+            //console.log(db.collection('historylist').get().then(snapshot => {return snapshot.size}))
+            //db.collection('historylist').get().then(snapshot => console.log(snapshot.size))
+            //db.collection('historylist').get().then(snapshot => console.log(snapshot.size))
+            
+            
+            
+            
+            //if ( count==0){
+            // const newRestaurant = {comments:"", person_avatar:this.user.photoURL, person_id:this.user.uid, restaurant_avatar:this.restaurant.restaurant_avatar, restaurant_id:this.restaurant.restaurant_id, restaurant_name:r.restaurant_name, restaurant_snapshot:""};
+            // db.collection("historylist").add(newRestaurant)
+            //}
             this.$router.push({ name: 'Comment',
             params: {
-              data:this.data,
-              id:this.data.id
+              rid:this.restaurant.restaurant_id
             }
             })
         },
+
+    remove: function(){
+        this.$firestoreRefs.restaurant.delete()
+
+        var jobskill_query = db.collection('historylist').where("restaurant_id", "==", this.restaurant.restaurant_id).where("person_id","==",auth.currentUser.uid);
+        jobskill_query.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+        doc.ref.delete();
+        });
+        });
+        
+        
+        
+        
+
+
+        
+    },
+
+    
+
+    
+
+
+    signInWithGoogle: function() {
+      auth.signInWithRedirect(provider)
+        .then(result => {
+          this.user = result.user;
+        })
+        .catch(err => console.log(err));
+    },
+    signOut: function() {
+      auth.signOut()
+        .then(() => {
+          this.user = null;
+        })
+        .catch(err => console.log(err));
+    },
 
 
        toRestaurant (data) {
@@ -69,11 +151,8 @@ export default {
   computed: {},
   created () {},
 
-  firestore: {
-        // read a lot
-        historylist: db.collection("historylist"),
+  
 
-    },
 
 
 

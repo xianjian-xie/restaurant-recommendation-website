@@ -8,6 +8,7 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import './registerServiceWorker'
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
@@ -29,7 +30,6 @@ auth.onAuthStateChanged(() => { // for authentication
     }).$mount('#app')
   }
 })
-
 
 // import Vue from 'vue'
 // import App from './App.vue'

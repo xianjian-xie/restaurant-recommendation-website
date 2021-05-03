@@ -3,8 +3,8 @@
     <span>{{ txt }}</span>
   </div> -->
   <div class="topbar">
-        <!-- <title-bar txt="App Name"></title-bar>
-        <button style = "float:right" @click="login">Login</button>
+        <title-bar txt="Dr. Restaurant Seeker"></title-bar>
+        <button @click="login">Login</button>
         <button @click="logout">Logout</button>
 
         

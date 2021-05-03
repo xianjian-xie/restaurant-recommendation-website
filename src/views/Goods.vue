@@ -89,7 +89,7 @@ export default {
     console.log("lalala",this.$route.params.data)
     this.restaurant = this.$route.params.data
 
-    axios.get('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/'+this.restaurant.id,{
+    axios.get('https://boiling-waters-50053.herokuapp.com/https://api.yelp.com/v3/businesses/'+this.restaurant.id,{
         headers:{
           'Authorization': 'Bearer x2sEHlXYD2bWhWNBBL6jG8QstSmJNXpjZLVIAzyE6QhPpzKvFxZC7OKWy3b6iFLucFHjchzmJS6YjNEDGa6aXY5ORGdC5ngDHQvv16t719ENUcJ5Vd5CMq0boeiFYHYx',
         }
