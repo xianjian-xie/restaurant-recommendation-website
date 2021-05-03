@@ -84,8 +84,7 @@ export default {
 
       db.collection("wishlist").add(newrestaurant);
 
-      const newR = {comments:"", person_avatar:auth.currentUser.photoURL, person_id:auth.currentUser.uid, restaurant_avatar:this.data.image_url, restaurant_id:this.data.id, restaurant_name:this.data.name, restaurant_snapshot:"https://www.creativefabrica.com/wp-content/uploads/2019/02/Camera-icon-by-ahlangraphic-8-580x386.jpg"};
-      db.collection("historylist").add(newR)
+      
 
       // db.collection("tasks").where("owner", "==", auth.currentUser.uid),
     },
