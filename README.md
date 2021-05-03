@@ -6,7 +6,7 @@ CSCI 5117, Spring 2021, [assignment description](https://canvas.umn.edu/courses/
 
 * Team Name:  Dr Video Games
 * App Name: Dr. Restaurant Seeker
-* App Link: <https://umncsci5117project2.web.app/>
+* App Link: <https://umncsci5117project2.web.app/search>
 
 FireBase Account:
 umnwebproj2@gmail.com
