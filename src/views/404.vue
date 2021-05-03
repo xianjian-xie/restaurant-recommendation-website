@@ -1,5 +1,6 @@
 <template>
-  <div class="auth">
+<div class="auth">
+
     <top-bar></top-bar>
     <div class="wrapper-404">
       <img :src="Img404" class="img-404" />
@@ -26,44 +27,44 @@
 
 <script>
 import { auth, provider } from "@/firebaseConfig";
-import TopBar from "@/components/top-bar";
-import Img404 from "@/assets/img/404.svg";
+import TopBar from '@/components/top-bar'
+import Img404 from '@/assets/img/404.svg'
 
 export default {
-  components: {
-    TopBar,
-  },
-  name: "Auth",
+    components: {
+      TopBar,
+    },
+    name: "Auth",
   data() {
     return {
       Img404,
-      user: null,
+      user: null
     };
   },
-  beforeCreate: function () {
-    auth.onAuthStateChanged((user) => {
+  beforeCreate: function() {
+    auth.onAuthStateChanged(user => {
       // console.log("user state:", user);
       // uncomment above to check out which user properties are available.
-      if (user) {
+      if (user) {        
         this.user = user;
       }
     });
   },
   methods: {
-    Backtomain() {
+    Backtomain(){
       this.$router.push({
-        path: "/",
-      });
+        path: '/'
+      })
     },
-    signInWithGoogle: function () {
-      auth
-        .signInWithRedirect(provider)
-        .then((result) => {
+    signInWithGoogle: function() {
+      auth.signInWithRedirect(provider)
+        .then(result => {
           this.user = result.user;
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
     },
-  },
+    
+  }
 };
 </script>
 
