@@ -64,6 +64,7 @@ export default {
     }
   },
   watch: {},
+  
   methods: {
         toRestaurant () {
       this.$router.push({

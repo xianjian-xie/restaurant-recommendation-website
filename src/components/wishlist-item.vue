@@ -2,7 +2,7 @@
 <b-col sm="12" md="6"  >
   <div class="wishlist-item" >
     <div class="top" >
-      <div>{{restaurant.restaurant_id}}</div>
+      
       <img :src="restaurant.restaurant_avatar" @click="toRestaurant(data)">
       <!-- v-lazy -->
       <div class="name" @click="toRestaurant(data)">{{restaurant.restaurant_name}}</div>
@@ -19,7 +19,7 @@
 
     <div class="bottom">
       <span class="again" @click="remove">Remove</span>
-      <span class="again" @click="commentPage">Comment</span>
+      <span class="again" @click="commentPage(restaurant)">Comment</span>
       
       
     </div>
@@ -65,6 +65,7 @@ export default {
             
         }
   },
+  
 
   methods: {
 
@@ -73,7 +74,7 @@ export default {
 
     
     
-    commentPage: function() {
+    commentPage(restaurant) {
       
            
             
@@ -85,9 +86,46 @@ export default {
             
             
             
+           
             
+            var restaurantIsExist = false;
+            var wishlistRef = db
+              .collection("historylist")
+              .where("person_id", "==", auth.currentUser.uid || "")
+              .where("restaurant_id", "==", this.restaurant.restaurant_id || "");
+
+            wishlistRef
+              .get()
+              .then((querySnapshot) => {
+                restaurantIsExist = !querySnapshot.empty;
+              })
+        .     then(() => {
+                if (restaurantIsExist) {
+                  console.log("restaurant is exist in historylist");
+                  
+              } else {
+                console.log("add restaurant to wishlist");
+                var addRestaurantData = {
+                person_id: auth.currentUser.uid,
+                person_avatar: auth.currentUser.photoURL,
+                restaurant_id: restaurant.restaurant_id,
+                restaurant_name: restaurant.restaurant_name,
+                restaurant_avatar: restaurant.restaurant_avatar,
+                comments:"",
+                restaurant_snapshot:"https://www.creativefabrica.com/wp-content/uploads/2019/02/Camera-icon-by-ahlangraphic-8-580x386.jpg",
+                };
+
+                db.collection("historylist")
+                .add(addRestaurantData)
+                .then(() => {
+                console.log("add restaurant to wishlist success");
+                
+                });
+                }
+            });
+    
             //if ( count==0){
-            // const newRestaurant = {comments:"", person_avatar:this.user.photoURL, person_id:this.user.uid, restaurant_avatar:this.restaurant.restaurant_avatar, restaurant_id:this.restaurant.restaurant_id, restaurant_name:r.restaurant_name, restaurant_snapshot:""};
+            // const newRestaurant = {comments:"", person_avatar:this.user.photoURL, person_id:this.user.uid, restaurant_avatar:this.restaurant.restaurant_avatar, restaurant_id:this.restaurant.restaurant_id, restaurant_name:this.restaurant.restaurant_name, restaurant_snapshot:""};
             // db.collection("historylist").add(newRestaurant)
             //}
             this.$router.push({ name: 'Comment',
@@ -99,18 +137,6 @@ export default {
 
     remove: function(){
         this.$firestoreRefs.restaurant.delete()
-
-        var jobskill_query = db.collection('historylist').where("restaurant_id", "==", this.restaurant.restaurant_id).where("person_id","==",auth.currentUser.uid);
-        jobskill_query.get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-        doc.ref.delete();
-        });
-        });
-        
-        
-        
-        
-
 
         
     },

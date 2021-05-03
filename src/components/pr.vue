@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button class="back" @click="back">Back</button>
 
     <div class="review">
         <div class="title">Your past review:</div>
@@ -128,6 +129,10 @@ export default {
             this.editable=true;
         },
 
+        back: function() {
+            this.$router.push({ name: 'WishList'})
+        }
+
 
 
     },
@@ -214,6 +219,11 @@ img{
         max-height: 100%;
         display: block; /* remove extra space below image */
     }
+
+.back{
+    display:flex;
+    float:left;
+}
 
  
 

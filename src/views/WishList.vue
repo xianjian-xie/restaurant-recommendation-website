@@ -3,7 +3,7 @@
     <!-- <div v-for="item in wishlist" :key="item.name" >
       <wishlist-item :data="item"></wishlist-item>
     </div> -->
-    <div>{{user.uid}}</div>
+    
     <top-bar></top-bar>
     <div class="loading" v-if="loading"></div>
     <template v-else-if="wishlist.length == 0">
