@@ -22,7 +22,7 @@
         <!-- <ul> -->
           <!-- <li class="foods-list foods-list-hook"> -->
             <!-- <h1 class="title">{{ item.name }}</h1> -->
-
+            <GoogleMap :cur_address = this.restaurantDetail.coordinates></GoogleMap>
             <ul>
               <li class="foods-item" v-for="photo in restaurantDetail.photos" :key="photo.name">
                 <div class="icon">
@@ -68,9 +68,11 @@
 
 <script>
 import axios from 'axios'
+import GoogleMap from '@/components/GoogleMap'
 
 export default {
   components: {
+    GoogleMap
   },
   data () {
     return {
@@ -84,7 +86,7 @@ export default {
   filters: {},
   computed: {},
   created () {
-    console.log(this.$route.params.data)
+    console.log("lalala",this.$route.params.data)
     this.restaurant = this.$route.params.data
 
     axios.get('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/'+this.restaurant.id,{
@@ -95,7 +97,7 @@ export default {
         console.log(res)
 	if(res){
 		this.restaurantDetail = res.data
-    console.log(this.restaurantDetail)
+    console.log("lueluelue",this.restaurantDetail)
 	}
       })
 

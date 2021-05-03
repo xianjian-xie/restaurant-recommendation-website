@@ -7,10 +7,18 @@ import {auth} from './firebaseConfig.js' // for authentication
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import * as VueGoogleMaps from 'vue2-google-maps'
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
 Vue.use(firestorePlugin); // added to make vuefire work
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyBLLqHMvwDcC91pm7lhJBaMuyjUzYkYquw',
+    libraries: 'places',
+  }
+});
 
 let app // for authentication
 auth.onAuthStateChanged(() => { // for authentication

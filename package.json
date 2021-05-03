@@ -13,10 +13,12 @@
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "firebase": "^8.4.1",
+    "google": "^2.1.0",
     "vue": "^2.6.11",
     "vue-media-recorder": "^0.1.25",
     "vue-router": "^3.2.0",
     "vue2-editor": "^2.10.2",
+    "vue2-google-maps": "^0.10.7",
     "vuefire": "^2.2.5"
   },
   "devDependencies": {

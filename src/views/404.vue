@@ -1,7 +1,10 @@
 <template>
 <div class="auth">
 
-    <template v-if="!user">
+    <top-bar></top-bar>
+    <button style = "float:right" @click="Backtomain">Back to Main Page</button>
+    <h1>404Page. Please Login.</h1>
+    <!-- <template v-if="!user">
       <h2> See the Content after Signing in</h2>
       <a href @click.prevent="signInWithGoogle">Sign in with Google</a>
       <h1>Find Nearby Restaurant</h1>
@@ -11,7 +14,7 @@
       
       <img :src="user.photoURL" alt="avatar" style="width: 30px; height: 30px; border-radius: 50%;">
       <a href @click.prevent="signOut">Sign Out</a>
-    </template>
+    </template> -->
 
     <!-- <pre>{{ user }}</pre> -->
   </div>
@@ -19,9 +22,12 @@
 
 <script>
 import { auth, provider } from "@/firebaseConfig";
+import TopBar from '@/components/top-bar'
 
 export default {
-    components: {},
+    components: {
+      TopBar,
+    },
     name: "Auth",
   data() {
     return {
@@ -38,6 +44,11 @@ export default {
     });
   },
   methods: {
+    Backtomain(){
+      this.$router.push({
+        path: '/'
+      })
+    },
     signInWithGoogle: function() {
       auth.signInWithRedirect(provider)
         .then(result => {

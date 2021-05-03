@@ -3,36 +3,91 @@
     <span>{{ txt }}</span>
   </div> -->
   <div class="topbar">
-        <title-bar txt="App Name"></title-bar>
-        <button @click="login">Login</button>
+        <!-- <title-bar txt="App Name"></title-bar>
+        <button style = "float:right" @click="login">Login</button>
         <button @click="logout">Logout</button>
-    </div>
+
+        
+        <input style="float:right" type="button" value="click me!" /> -->
+        
+    
+        <title-bar txt="App Name"></title-bar>
+    <template v-if="!user">
+      <button style = "float:right" @click.prevent="signInWithGoogle">Login</button>
+    </template>
+
+    <template v-if="user">
+      <button style = "float:right" @click.prevent="signOut">Logout</button>
+      <img :src="user.photoURL" alt="avatar" style="float:right; width: 30px; height: 30px; border-radius: 50%;">
+      
+    </template>
+
+    <!-- <pre>{{ user }}</pre> -->
+  </div>
 </template>
 
 
 
 <script>
 import TitleBar from '@/components/title-bar'
+import { auth, provider } from "@/firebaseConfig";
+
 export default {
   components: {TitleBar},
   data () {
-    return {}
+    return {
+      user: null
+    }
   },
   props: {
     
   },
   watch: {},
+  beforeCreate: function() {
+    auth.onAuthStateChanged(user => {
+      // console.log("user state:", user);
+      // uncomment above to check out which user properties are available.
+      if (user) {        
+        this.user = user;
+      }
+    });
+  },
+  beforeUpdate() {
+    
+      // console.log("user state:", user);
+      // uncomment above to check out which user properties are available.
+      if (!this.user) {        
+        this.$router.push({
+        path: '/'
+      })
+      }
+    
+  },
   methods: {
-    login () {
-      this.$router.push({
-        path: '/login'
-      })
+    signInWithGoogle: function() {
+      auth.signInWithRedirect(provider)
+        .then(result => {
+          this.user = result.user;
+        })
+        .catch(err => console.log(err));
     },
-    logout () {
-      this.$router.push({
-        path: '/logout'
-      })
+    signOut: function() {
+      auth.signOut()
+        .then(() => {
+          this.user = null;
+        })
+        .catch(err => console.log(err));
     },
+    // login () {
+    //   this.$router.push({
+    //     path: '/login'
+    //   })
+    // },
+    // logout () {
+    //   this.$router.push({
+    //     path: '/logout'
+    //   })
+    // },
   },
   filters: {},
   computed: {},
