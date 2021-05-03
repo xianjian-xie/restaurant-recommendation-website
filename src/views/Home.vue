@@ -77,7 +77,7 @@ export default {
  _initIndexListData () {
    console.log(this.location)
 
-axios.get(' https://boiling-waters-50053.herokuapp.com/https://api.yelp.com/v3/businesses/search?'+
+axios.get('https://boiling-waters-50053.herokuapp.com/https://api.yelp.com/v3/businesses/search?'+
       'term=restaurant'+ 
       '&latitude='+ this.location.coords.latitude + '&longitude=' + this.location.coords.longitude +
       '&radius=1500'+
