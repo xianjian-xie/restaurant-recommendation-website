@@ -3,15 +3,6 @@
        
 
         
-        
-
-        <!--<div>{{data.name}}</div>
-
-        
-        
-        <div v-for="r in restaurant" :key="r.index" v-if="r.index==1">{{r.id}}</div>-->
-
-        
         <top-bar></top-bar>
 
         

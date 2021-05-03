@@ -83,6 +83,7 @@ export default {
       restaurant_location:this.data.location, restaurant_rating:this.data.rating};
 
       db.collection("wishlist").add(newrestaurant);
+      this.$router.push({name: 'WishList'})
       // db.collection("tasks").where("owner", "==", auth.currentUser.uid),
     },
 

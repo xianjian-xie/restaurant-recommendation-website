@@ -165,6 +165,7 @@ db.collection("wishlist").doc(this.id)
     });
 
 
+    this.$router.push({name: 'Fakered'})
     },
 
 
