@@ -1,6 +1,6 @@
 <template>
-<b-col sm="12" md="6"  >
-  <div class="wishlist-item" >
+<b-col sm="12" md="6" >
+  <div class="wishlist-item">
     <div class="top" >
       
       <img :src="restaurant.restaurant_avatar">
@@ -38,9 +38,7 @@ export default {
     return {
       wishlist:[],
       restaurant:[],
-      user:[],
-
-      
+      user:[],  
       
     }
   },
@@ -59,9 +57,9 @@ export default {
   },
 
   firestore: function() {
+        console.log(this.id);
         return {
             restaurant: db.collection("wishlist").doc(this.id),
-            
             
         }
   },
@@ -110,7 +108,7 @@ export default {
             var wishlistRef = db
               .collection("historylist")
               .where("person_id", "==", auth.currentUser.uid || "")
-              .where("restaurant_id", "==", this.restaurant.restaurant_id || "");
+              .where("restaurant_id", "==", restaurant.restaurant_id || "");
 
             wishlistRef
               .get()
@@ -169,10 +167,6 @@ db.collection("wishlist").doc(this.id)
 
     },
 
-    
-
-    
-
 
     signInWithGoogle: function() {
       auth.signInWithRedirect(provider)
@@ -190,27 +184,16 @@ db.collection("wishlist").doc(this.id)
     },
 
 
-       toRestaurant (data) {
-      // console.log(data)
-      this.$emit('toRestaurant', data)
-
-
-      
-
-      
-    }
+    //    toRestaurant (data) {
+    //   // console.log(data)
+    //   this.$emit('toRestaurant', data)
+    
+    // }
 
   },
   filters: {},
   computed: {},
   created () {},
-
-  
-
-
-
-
-
   mounted () {}
 }
 </script>

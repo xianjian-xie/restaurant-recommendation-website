@@ -1,4 +1,5 @@
 <template>
+<b-col sm="12" md="6" >
   <div class="historylist-item">
     <div class="restaurant-info" @click="toRestaurant">
       <div class="avatar">
@@ -30,6 +31,7 @@
       <button class="action-btn" @click="addToWishlist">Add to Wishlist</button>
     </div>
   </div>
+   </b-col>
 </template>
 
 <script>

@@ -77,11 +77,6 @@ export default {
 
 
   methods: {
-      toRestaurant () {
-      this.$router.push({
-        path: '/restaurant'
-      })
-     },
 
      signInWithGoogle: function() {
       auth.signInWithRedirect(provider)

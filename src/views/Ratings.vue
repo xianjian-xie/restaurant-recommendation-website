@@ -1,5 +1,16 @@
 <template>
   <div class="ratings" ref="ratingsRef">
+    <div class="foods-wrapper" ref="foodsRef">
+            <ul>
+              <li class="foods-item" v-for="photo in restaurantDetail.photos" :key="photo.name">
+                <div class="icon">
+                  <img :src="photo">
+                  <!-- v-lazy -->
+                </div>
+              </li>
+            </ul>
+      </div>
+
     <div class="ratings-content">
       <cross-line></cross-line>
 
@@ -23,6 +34,7 @@
                 <!-- <i class="icon-thumb_up"></i> -->
                 <!-- <span class="item" v-for="item in rating.recommend">{{item}}</span> -->
               <!-- </div> -->
+
 
               <div class="time">
                 {{review.time_created}}
@@ -51,7 +63,8 @@ export default {
   },
   data () {
     return {
-      ratings: null
+      ratings: null,
+      restaurantDetail: null
     }
   },
   props: {},
@@ -68,6 +81,7 @@ export default {
   },
   mounted () {
     console.log(this.$route.params.data)
+
     axios.get('https://boiling-waters-50053.herokuapp.com/https://api.yelp.com/v3/businesses/'+this.$route.params.data.id+'/reviews',{
         headers:{
           'Authorization': 'Bearer x2sEHlXYD2bWhWNBBL6jG8QstSmJNXpjZLVIAzyE6QhPpzKvFxZC7OKWy3b6iFLucFHjchzmJS6YjNEDGa6aXY5ORGdC5ngDHQvv16t719ENUcJ5Vd5CMq0boeiFYHYx',
@@ -77,9 +91,24 @@ export default {
 	if(res){
 		this.ratings = res.data.reviews
     console.log(res.data.reviews)
-    console.log(this.ratings[0].text)
 	}
       })
+
+
+        axios.get('https://boiling-waters-50053.herokuapp.com/https://api.yelp.com/v3/businesses/'+this.$route.params.data.id,{
+        headers:{
+          'Authorization': 'Bearer x2sEHlXYD2bWhWNBBL6jG8QstSmJNXpjZLVIAzyE6QhPpzKvFxZC7OKWy3b6iFLucFHjchzmJS6YjNEDGa6aXY5ORGdC5ngDHQvv16t719ENUcJ5Vd5CMq0boeiFYHYx',
+        }
+      }).then(res =>{
+        console.log(res)
+	if(res){
+		this.restaurantDetail = res.data
+    console.log("lueluelue",this.restaurantDetail)
+	}
+      })
+
+
+
   }
 }
 </script>
@@ -252,5 +281,87 @@ export default {
       }
     }
   }
+
+
+  .foods-wrapper {
+    flex: 1;
+      .title {
+        padding-left: 14px;
+        height: 26px;
+        line-height: 26px;
+        border-left: 2px solid #d9dde1;
+        font-size: 12px;
+        color: rgb(147, 153, 159);
+        background-color: #f3f5f7;
+      }
+      .foods-item {
+        position: relative;
+        display: inline;
+        margin: 18px;
+        padding-bottom: 18px;
+        @include onepx('bottom', true);
+        .icon {
+          flex: 0 0 57px;
+          width: 57px;
+          height: 57px;
+          margin-right: 10px;
+          img {
+            width: 57px;
+            height: 57px;
+          }
+        }
+        .content {
+          flex: 1;
+          .name {
+            font-size: 14px;
+            margin: 2px 0 8px 0;
+            height: 14px;
+            line-height: 14px;
+            color: rgb(7, 17, 27);
+          }
+          .desc {
+            margin-bottom: 8px;
+            line-height: 14px;
+            font-size: 10px;
+            color: rgb(147, 153, 159);
+          }
+          .extra {
+            margin-bottom: 8px;
+            line-height: 12px;
+            font-size: 0;
+            color: rgb(147, 153, 159);
+            .count {
+              font-size: 10px;
+              margin-right: 12px;
+            }
+            .rating {
+              font-size: 10px;
+            }
+          }
+          .price {
+            font-weight: 700;
+            line-height: 24px;
+            .now {
+              margin-right: 8px;
+              font-size: 14px;
+              color: rgb(240, 20, 20);
+            }
+            .old {
+              font-size: 10px;
+              color: rgb(147, 153, 159);
+              text-decoration: line-through;
+            }
+          }
+          .control {
+            position: absolute;
+            right: 0;
+            bottom: 1px;
+          }
+        }
+      }
+  }
+
+  
+
 }
 </style>

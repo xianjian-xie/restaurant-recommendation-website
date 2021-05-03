@@ -1,8 +1,6 @@
-<!-- 底部导航栏 组件 -->
 
 <template>
   <ul class="tab-bar">
-    <!-- ?_? 当设置 to="/" 时，首页ico总是高亮，搞不懂 ?_? -->
     <router-link class="search" tag="li" to="/search">
       <i class="ico-search"></i>
       <span>Nearby Restaurants</span>
