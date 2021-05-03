@@ -3,9 +3,9 @@
   <div class="wishlist-item" >
     <div class="top" >
       
-      <img :src="restaurant.restaurant_avatar" @click="toRestaurant(data)">
+      <img :src="restaurant.restaurant_avatar">
       <!-- v-lazy -->
-      <div class="name" @click="toRestaurant(data)">{{restaurant.restaurant_name}}</div>
+      <div class="name">{{restaurant.restaurant_name}}</div>
       
       <!-- <div class="status">5 orders complete</div> -->
     </div>
@@ -68,6 +68,24 @@ export default {
   
 
   methods: {
+
+    getNotifications() {
+                const self = this;
+                
+                this.restaurant = [];
+                db.collection("wishlist").doc(self.id).get()
+                    .then(function(snapshot){
+                        snapshot(function(doc){
+                            self.restaurant.push(doc.data());
+                        })
+                    })
+            },
+
+            //db.collection("cities").doc("SF")
+    //.onSnapshot((doc) => {
+     //   console.log("Current data: ", doc.data());
+    //});
+
 
     
     
@@ -136,9 +154,19 @@ export default {
         },
 
     remove: function(){
-        this.$firestoreRefs.restaurant.delete()
+        //this.$firestoreRefs.restaurant.delete();
+        //this.getNotifications();
+        db.collection("wishlist").doc(this.id).delete().then(() => {
+    console.log("Document successfully deleted!");
+}).catch((error) => {
+    console.error("Error removing document: ", error);
+});
+db.collection("wishlist").doc(this.id)
+    .onSnapshot((doc) => {
+        console.log("Current data: ", doc.data());
+    });
 
-        
+
     },
 
     
