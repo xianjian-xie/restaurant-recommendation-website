@@ -4,9 +4,9 @@ CSCI 5117, Spring 2021, [assignment description](https://canvas.umn.edu/courses/
 
 ## App Info:
 
-* Team Name: TODO
-* App Name: TODO
-* App Link: <https://TODO.firebaseapp.com/>
+* Team Name:  Dr Video Games
+* App Name: Dr. Restaurant Seeker
+* App Link: <https://umncsci5117project2.web.app/>
 
 FireBase Account:
 umnwebproj2@gmail.com
@@ -38,8 +38,11 @@ qweasdzxc1!
 
 ### Students
 
-* First Last, x500@umn.edu
-* ...
+* Chen Hu, huxxx853@umn.edu
+* Qi Le, le000288@umn.edu
+* Yu Han, han00129@umn.edu
+* Benjamin Chen, chen5713@umn.edu
+* Xianjian Xie, xie00250@umn.edu
 
 
 ## Key Features
@@ -51,11 +54,11 @@ qweasdzxc1!
 
 Which (if any) device integration(s) does your app support?
 
-* ...
+* Geolocation, camera
 
 Which (if any) progressive web app feature(s) does your app support?
 
-* ...
+* Add to home feature
 
 
 
