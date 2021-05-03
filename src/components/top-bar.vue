@@ -4,14 +4,14 @@
   </div> -->
   <div class="topbar">
         <title-bar txt="Dr. Restaurant Seeker"></title-bar>
-        <button @click="login">Login</button>
+        <!-- <button @click="login">Login</button>
         <button @click="logout">Logout</button>
 
         
-        <input style="float:right" type="button" value="click me!" /> -->
+        <input style="float:right" type="button" value="" /> -->
         
     
-        <title-bar txt="App Name"></title-bar>
+        <!-- <title-bar txt="App Name"></title-bar> -->
     <template v-if="!user">
       <button style = "float:right" @click.prevent="signInWithGoogle">Login</button>
     </template>
