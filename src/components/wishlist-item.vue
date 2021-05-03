@@ -89,9 +89,9 @@ export default {
                 var addRestaurantData = {
                 person_id: auth.currentUser.uid,
                 person_avatar: auth.currentUser.photoURL,
-                restaurant_id: restaurant.restaurant_id,
-                restaurant_name: restaurant.restaurant_name,
-                restaurant_avatar: restaurant.restaurant_avatar,
+                restaurant_id: this.restaurant.restaurant_id,
+                restaurant_name: this.restaurant.restaurant_name,
+                restaurant_avatar: this.restaurant.restaurant_avatar,
                 comments:"",
                 restaurant_snapshot:"https://www.creativefabrica.com/wp-content/uploads/2019/02/Camera-icon-by-ahlangraphic-8-580x386.jpg",
                 };
