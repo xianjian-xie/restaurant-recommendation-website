@@ -8,18 +8,6 @@ CSCI 5117, Spring 2021, [assignment description](https://canvas.umn.edu/courses/
 * App Name: Dr. Restaurant Seeker
 * App Link: <https://umncsci5117project2.web.app/search>
 
-FireBase Account:
-umnwebproj2@gmail.com
-qweasdzxc1!
-
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
-
-
 ### Students
 
 * Chen Hu, huxxx853@umn.edu
