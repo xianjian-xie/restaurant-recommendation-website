@@ -19,22 +19,6 @@ qweasdzxc1!
      https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
 
-<script>
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseConfig = {
-    apiKey: "AIzaSyDYEMRkasmcIv2MSX-qpYuvbDxSD30GC_Q",
-    authDomain: "umnwebproj2-20e19.firebaseapp.com",
-    projectId: "umnwebproj2-20e19",
-    storageBucket: "umnwebproj2-20e19.appspot.com",
-    messagingSenderId: "343897096907",
-    appId: "1:343897096907:web:b166076d01f00f4bffd14e",
-    measurementId: "G-6JMSZVKDGB"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script>
 
 ### Students
 
