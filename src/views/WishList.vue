@@ -15,7 +15,7 @@
     <b-container v-else>
       <b-row>
     <WishListItem v-for="item in wishlist"
-                    :key="item.name"
+                    :key="item.id"
                     :id="item.id"></WishListItem>
     </b-row>
       </b-container>
