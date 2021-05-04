@@ -124,7 +124,7 @@ export default {
   left: 0;
   width: 100%;
   background-color: #fff;
-  overflow: hidden;
+  // overflow: hidden;
   .ratings-content {
     .overview {
       display: flex;
