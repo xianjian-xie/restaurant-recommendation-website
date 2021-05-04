@@ -22,7 +22,10 @@ CSCI 5117, Spring 2021, [assignment description](https://canvas.umn.edu/courses/
 **Describe the most challenging features you implemented
 (one sentence per bullet, maximum 4 bullets):**
 
-* ...
+* A google map integration which shows routue from current location to desire restaurant
+* A comment page which can take photos
+* A restaurant detail pages which has layout of sub webpages
+* A add to home screen PWA tool
 
 Which (if any) device integration(s) does your app support?
 
