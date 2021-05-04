@@ -291,12 +291,12 @@ export default {
         .foods-item {
           position: relative;
           display: inline;
-          margin: 18px;
+          margin: 0px;
           // padding-bottom: 18px;
           @include onepx('bottom', true);
           .icon {
             float:left;
-            flex: 0 0 25%;
+            // flex: 0 0 25%;
             width: 25%;
             height: 25%;
             margin-right: 20px;
